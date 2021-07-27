@@ -1,0 +1,13 @@
+.row-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+    overflow-x: scroll;
+}
+
+.row-container.ss {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    overflow: hidden;
+}

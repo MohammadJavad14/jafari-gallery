@@ -1,0 +1,12 @@
+.container {
+    width: 85%;
+    height: 40px;
+    padding: 8px;
+    margin: auto;
+    border-radius: 8px;
+}
+
+.info {
+    background: #a9d3f0;
+    color: #34559c;
+}

@@ -1,0 +1,43 @@
+{
+    "name": "01-000427-jafari",
+    "version": "1.0.0",
+    "description": "Jafari Gallery app",
+    "main": "server.js",
+    "type": "module",
+    "scripts": {
+        "start": "node backend/server",
+        "server": "nodemon backend/server",
+        "client": "npm start --prefix frontend",
+        "dev": "concurrently \"npm run server\" \"npm run client\"",
+        "data:import": "node backend/seeder",
+        "data:destroy": "node backend/seeder -d"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/MohammadJavad14/jafari-gallery.git"
+    },
+    "author": "MohammadJavad Alizadeh",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/MohammadJavad14/jafari-gallery/issues"
+    },
+    "homepage": "https://github.com/MohammadJavad14/jafari-gallery#readme",
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "bootstrap": "^5.0.2",
+        "colors": "^1.4.0",
+        "dotenv": "^10.0.0",
+        "express": "^4.17.1",
+        "express-async-handler": "^1.1.4",
+        "jsonwebtoken": "^8.5.1",
+        "mogoose": "^0.0.1-security",
+        "mongoose": "^5.13.3",
+        "react-bootstrap": "^2.0.0-beta.4",
+        "react-router-bootstrap": "^0.23.3",
+        "redux-devtools-extension": "^2.13.9"
+    },
+    "devDependencies": {
+        "concurrently": "^6.2.0",
+        "nodemon": "^2.0.12"
+    }
+}
