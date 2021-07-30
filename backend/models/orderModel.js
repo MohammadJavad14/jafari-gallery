@@ -6,7 +6,7 @@ const orderSchema = mongoose.Schema({
         required: true,
         ref: 'User',
     },
-    orderItem: [{
+    orderItems: [{
         name: { type: String, required: true },
         qty: { type: Number, required: true },
         image: { type: String, required: true },
@@ -34,6 +34,11 @@ const orderSchema = mongoose.Schema({
         email_address: { type: String },
     },
     taxPrice: {
+        type: Number,
+        required: true,
+        default: 0,
+    },
+    itemsPrice: {
         type: Number,
         required: true,
         default: 0,

@@ -1,0 +1,12 @@
+.checkout-item {
+  list-style: none;
+  font-size: small;
+  margin: 2px;
+  padding: 0 4px;
+}
+
+.step-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

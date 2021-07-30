@@ -15,7 +15,7 @@
 }
 
 .input-container {
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   display: flex;
   align-items: center;
   margin: 8px 0;
@@ -56,4 +56,8 @@
 
 .register-link {
   color: #da1432;
+}
+
+.payment-name {
+  padding: 0 8px;
 }
