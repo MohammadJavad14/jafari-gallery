@@ -34,11 +34,10 @@ const Footer = () => {
             <Link to='/cart'>
               <button>
                 <i className='fas fa-shopping-bag'></i>
-                {numberOfProductInBag !== 0 && (
-                  <div className={classes['product-number-in-bag']}>
-                    {numberOfProductInBag.toLocaleString('fa-IR')}
-                  </div>
-                )}
+
+                <div className={classes['product-number-in-bag']}>
+                  {numberOfProductInBag.toLocaleString('fa-IR')}
+                </div>
 
                 <p className={classes['bag-text']}>سبد خرید</p>
               </button>
