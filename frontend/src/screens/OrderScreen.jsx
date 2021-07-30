@@ -17,18 +17,19 @@ import { Redirect } from 'react-router-dom';
 const OrderScreen = ({ history, match, location }) => {
   const orderId = match.params.id;
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getPayOrderResult(orderId));
+    dispatch(getOrderDetails(orderId));
+  }, [dispatch, orderId]);
 
-  const orderDetails = useSelector((state) => state.orderDetails);
+  // const orderDetails = useSelector((state) => state.orderDetails);
   const orderPayResult = useSelector((state) => state.orderPayResult);
 
   const { paySuccess } = orderPayResult;
 
-  const { order, loading, error } = orderDetails;
+  // const { order, loading, error } = orderDetails;
 
-  useEffect(() => {
-    dispatch(getOrderDetails(orderId));
-    dispatch(getPayOrderResult(orderId));
-  }, [dispatch, orderId]);
+  const { paymentResult, loading, error } = orderPayResult;
 
   const paymentHandler = () => {
     dispatch(payOrder(orderId));
@@ -45,29 +46,33 @@ const OrderScreen = ({ history, match, location }) => {
     <Message>{error}</Message>
   ) : (
     <>
-      <h3> سفارش {order._id}</h3>
+      <h3> سفارش {paymentResult?._id}</h3>
       <div>
         <Card className='l'>
           <div className={classes['order-details']}>
             <h3>آدرس :</h3>
             <p>
-              {order.shippingAddress.country}, {order.shippingAddress.city},{' '}
-              {order.shippingAddress.address},{' '}
-              {order.shippingAddress.postalCode}
+              {paymentResult?.shippingAddress.country},{' '}
+              {paymentResult?.shippingAddress.city},{' '}
+              {paymentResult?.shippingAddress.address},{' '}
+              {paymentResult?.shippingAddress.postalCode}
             </p>
           </div>
-          {order.isDelivered ? (
-            <Message>تحویل داده شده در {order.deliveredAt}</Message>
+          {paymentResult?.isDelivered ? (
+            <Message>تحویل داده شده در {paymentResult?.deliveredAt}</Message>
           ) : (
             <Message>تحویل داده نشده است</Message>
           )}
           <div className={classes['order-details']}>
             <h3>روش پرداخت :</h3>
-            <p>{order.paymentMethod}</p>
+            <p>{paymentResult?.paymentMethod}</p>
           </div>
-          {order.isPaid ? (
+          {paymentResult?.isPaid ? (
             <Message>
-              پرداخت شده در {new Date(order.paidAt).toLocaleDateString('fa-IR')}
+              پرداخت شده در{' '}
+              {new Date(paymentResult?.paidAt).toLocaleTimeString('fa-IR')}
+              {' , '}
+              {new Date(paymentResult?.paidAt).toLocaleDateString('fa-IR')}
             </Message>
           ) : (
             <Message>پرداخت نشده است</Message>
@@ -76,11 +81,11 @@ const OrderScreen = ({ history, match, location }) => {
         <Card className='l'>
           <div className={classes['order-items']}>
             <h3>سفارشات :</h3>
-            {order.orderItems.length === 0 ? (
+            {paymentResult?.orderItems.length === 0 ? (
               <Message> سفارش شما خالی می باشد</Message>
             ) : (
               <>
-                {order.orderItems.map((item, index) => (
+                {paymentResult?.orderItems.map((item, index) => (
                   <div className={classes.container} key={index}>
                     <div className={classes['img-container']}>
                       <img src={item.image} alt={item.name} />
@@ -111,7 +116,7 @@ const OrderScreen = ({ history, match, location }) => {
           <div className={classes['cart-summery']}>
             <h5>تعداد محصولات :</h5>
             <h5 className={classes['number-product']}>
-              {order.orderItems
+              {paymentResult?.orderItems
                 .reduce((acc, item) => acc + item.qty, 0)
                 .toLocaleString('fa-IR')}
             </h5>
@@ -119,34 +124,34 @@ const OrderScreen = ({ history, match, location }) => {
           <div className={classes['cart-summery']}>
             <h5>قیمت محصولات :</h5>
             <h3 className={classes['summery-price']}>
-              {`${order.itemsPrice?.toLocaleString('fa-IR')} تومان`}
+              {`${paymentResult?.itemsPrice?.toLocaleString('fa-IR')} تومان`}
             </h3>
           </div>
           <div className={classes['cart-summery']}>
             <h5>هزینه ارسال :</h5>
             <h3 className={classes['summery-price']}>
-              {`${order.shippingPrice.toLocaleString('fa-IR')} تومان`}
+              {`${paymentResult?.shippingPrice.toLocaleString('fa-IR')} تومان`}
             </h3>
           </div>
           <div className={classes['cart-summery']}>
             <h5>مالیات :</h5>
             <h3 className={classes['summery-price']}>
-              {`${order.taxPrice.toLocaleString('fa-IR')} تومان`}
+              {`${paymentResult?.taxPrice.toLocaleString('fa-IR')} تومان`}
             </h3>
           </div>
           <div className={classes['cart-summery']}>
             <h5>جمع کل :</h5>
             <h3 className={classes['summery-price']}>
-              {`${order.totalPrice.toLocaleString('fa-IR')} تومان`}
+              {`${paymentResult?.totalPrice.toLocaleString('fa-IR')} تومان`}
             </h3>
           </div>
           <Seprator />
           <button
             onClick={paymentHandler}
             className={`${classes['btn-proceed']} ${
-              order.orderItems.length === 0 && classes.disabled
+              paymentResult?.orderItems.length === 0 && classes.disabled
             }`}
-            disabled={order.orderItems.length === 0 && true}
+            disabled={paymentResult?.orderItems.length === 0 && true}
           >
             پیگیری سفارش
           </button>

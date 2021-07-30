@@ -79,8 +79,6 @@ const updateOrderToPaid = asyncHandler(async(req, res, err) => {
             payParams
         );
 
-        console.log(response);
-
         if (response.data.data.code == 100) {
             const newPayment = new Payment({
                 user: order.user,
@@ -121,8 +119,6 @@ const payCallback = asyncHandler(async(req, res, next) => {
         const authority = req.headers.referer.split('=')[1].split('&')[0];
 
         const payment = await Payment.findOne({ resnumber: authority });
-
-        console.log(payment);
 
         const order = await Order.findById(payment.order);
 
