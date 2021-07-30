@@ -1,5 +1,5 @@
 .footer {
-    position: relative;
+    position: fixed;
     bottom: 0;
     margin: auto;
     background: white;
@@ -29,10 +29,16 @@
 .footer-item button {
     background: inherit;
     border: none;
+    height: 20px;
 }
 
 .footer-item p {
     font-size: 80%;
+}
+
+.bag-text {
+    font-size: 80%;
+    margin-top: -20px;
 }
 
 .product-number-in-bag {
@@ -44,7 +50,7 @@
     color: white;
     text-align: center;
     align-items: center;
-    position: fixed;
-    bottom: 45px;
-    left: 116px;
+    position: relative;
+    bottom: 38px;
+    left: -30px;
 }

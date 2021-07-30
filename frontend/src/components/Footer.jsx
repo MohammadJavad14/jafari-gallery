@@ -40,7 +40,7 @@ const Footer = () => {
                   </div>
                 )}
 
-                <p>سبد خرید</p>
+                <p className={classes['bag-text']}>سبد خرید</p>
               </button>
             </Link>
           </li>

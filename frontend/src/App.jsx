@@ -13,12 +13,8 @@ import ShippingScreen from './screens/ShippingScreen';
 import PaymentScreen from './screens/PaymentScreen';
 import PlaceOrderScreen from './screens/PlaceOrderScreen';
 import OrderScreen from './screens/OrderScreen';
-import { useSelector } from 'react-redux';
-import axios from 'axios';
 
 const App = () => {
-  const orderPay = useSelector((state) => state.orderPay);
-  const { paymentURL, success } = orderPay;
   return (
     <Router>
       <Header />

@@ -159,7 +159,7 @@ const PlaceOrderScreen = ({ history }) => {
           }`}
           disabled={cart.cartItems.length === 0 && true}
         >
-          ایجاد سفارش
+          پرداخت و نهایی کردن سفارش
         </button>
       </div>
     </div>

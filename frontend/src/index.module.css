@@ -1,3 +1,7 @@
+html {
+    overflow-y: scroll;
+}
+
 @font-face {
     font-family: IRANSans;
     src: url(./resources/IRANSans\ 400.ttf);

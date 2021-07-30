@@ -66,7 +66,9 @@ const OrderScreen = ({ history, match, location }) => {
             <p>{order.paymentMethod}</p>
           </div>
           {order.isPaid ? (
-            <Message>پرداخت شده در {order.paidAt}</Message>
+            <Message>
+              پرداخت شده در {new Date(order.paidAt).toLocaleDateString('fa-IR')}
+            </Message>
           ) : (
             <Message>پرداخت نشده است</Message>
           )}
@@ -146,7 +148,7 @@ const OrderScreen = ({ history, match, location }) => {
             }`}
             disabled={order.orderItems.length === 0 && true}
           >
-            پرداخت و نهایی کردن سفارش
+            پیگیری سفارش
           </button>
         </div>
       </div>
