@@ -95,17 +95,6 @@ const updateOrderToPaid = asyncHandler(async(req, res, err) => {
         } else {
             res.redirect('/:id');
         }
-        // if (order) {
-        //     order.isPaid = true;
-        //     order.paidAt = Date.now();
-
-        //     const updatedOrder = await order.save();
-
-        //     res.json(updatedOrder);
-        // } else {
-        //     res.status(404);
-        //     throw new Error('سفارش یافت نشد');
-        // }
     } catch (err) {
         console.log(err);
     }
@@ -154,4 +143,23 @@ const payCallback = asyncHandler(async(req, res, next) => {
     }
 });
 
-export { addOrderItems, getOrderById, updateOrderToPaid, payCallback };
+// @desc    GET logged in user orders
+// @route   GET /api/orders/myorders
+// @access  Private
+
+const getMyOrders = asyncHandler(async(req, res, err) => {
+    try {
+        const orders = await Order.find({ user: req.user._id });
+
+        res.json(orders);
+    } catch (err) {
+        console.log(err);
+    }
+});
+export {
+    addOrderItems,
+    getOrderById,
+    updateOrderToPaid,
+    payCallback,
+    getMyOrders,
+};

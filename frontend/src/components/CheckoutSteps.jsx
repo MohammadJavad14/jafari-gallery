@@ -1,6 +1,4 @@
 import React from 'react';
-import Card from '../components/UI/Card';
-import Row from '../components/UI/Row';
 import { Link } from 'react-router-dom';
 import classes from './CheckoutSteps.module.css';
 

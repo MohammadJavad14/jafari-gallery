@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import classes from './Header.module.css';
@@ -11,9 +11,17 @@ const Header = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  const [dropdownIsVisible, setDropdownIsVisible] = useState(false);
+
+  const dropdownHandler = () => {
+    setDropdownIsVisible(!dropdownIsVisible);
+  };
+
   const logoutHandler = () => {
     dispatch(logout());
+    setDropdownIsVisible(!dropdownIsVisible);
   };
+
   return (
     <header>
       <nav className={classes['main-nav']}>
@@ -27,13 +35,25 @@ const Header = () => {
             <h3 className={classes.brand}>گالری جعفری</h3>
           </Link>
           {userInfo ? (
-            <div>
-              <h4>{userInfo.name}</h4>
-              <Link to='/profile'>
-                <button> حساب من</button>
-              </Link>
+            <div className={classes.dropdown}>
+              <button
+                className={classes['dropdown-btn']}
+                onClick={dropdownHandler}
+              >
+                <i className='fas fa-caret-down'></i>
+                <h4 className={classes['user-name']}>{userInfo.name}</h4>
+              </button>
+              <div
+                className={`${classes['dropdown-content']} ${
+                  dropdownIsVisible && classes['dropdown-content-visible']
+                }`}
+              >
+                <button onClick={dropdownHandler}>
+                  <Link to='/profile'>حساب من</Link>
+                </button>
 
-              <button onClick={logoutHandler}>خروج</button>
+                <button onClick={logoutHandler}>خروج</button>
+              </div>
             </div>
           ) : (
             <Link to='/login'>

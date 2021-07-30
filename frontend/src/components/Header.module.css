@@ -82,3 +82,38 @@ header {
     top: -38px;
     left: -18px;
 }
+
+.dropdown {
+    /* margin-top: 40px; */
+    padding-top: 80px;
+}
+
+.dropdown-btn {
+    display: flex;
+    align-items: center;
+}
+
+.user-name {
+    margin: 4px;
+}
+
+.dropdown-content {
+    display: flex;
+    transition: ease-in opacity 0.2s;
+    opacity: 0;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    background: white;
+    position: relative;
+    z-index: 20;
+    height: 80px;
+}
+
+.dropdown-content-visible {
+    transition: ease-in opacity 0.2s;
+    opacity: 1;
+}
+
+.dropdown-content button {
+    margin: 6px 0;
+}

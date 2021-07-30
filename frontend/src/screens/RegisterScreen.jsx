@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/UI/Message';
 import Loader from '../components/UI/Loader';
-import { login } from '../actions/userAction';
 import { register } from '../actions/userAction';
 import Card from '../components/UI/Card';
 

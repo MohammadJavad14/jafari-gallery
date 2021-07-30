@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Card from '../components/UI/Card';
 import Message from '../components/UI/Message';
@@ -12,9 +12,8 @@ import {
   getPayOrderResult,
   payOrder,
 } from '../actions/orderActions';
-import { Redirect } from 'react-router-dom';
 
-const OrderScreen = ({ history, match, location }) => {
+const OrderScreen = ({ match }) => {
   const orderId = match.params.id;
   const dispatch = useDispatch();
   useEffect(() => {
@@ -24,8 +23,6 @@ const OrderScreen = ({ history, match, location }) => {
 
   // const orderDetails = useSelector((state) => state.orderDetails);
   const orderPayResult = useSelector((state) => state.orderPayResult);
-
-  const { paySuccess } = orderPayResult;
 
   // const { order, loading, error } = orderDetails;
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeFromCart } from '../actions/cartAction';
@@ -32,27 +32,6 @@ const CartScreen = ({ match, location, history }) => {
   };
 
   let disable = false;
-
-  const increaseQty = (e) => {
-    e.preventDefault();
-    if (qty === 1) {
-      return;
-    }
-    // setQty((prevState) => --prevState);
-  };
-
-  const decreaseQty = (e) => {
-    e.preventDefault();
-    if (qty === 1) {
-      return;
-    }
-    // setQty((prevState) => --prevState);
-  };
-
-  const qtyHandler = (e) => {
-    // console.log(e);
-    // setQty(e?.target?.value);
-  };
 
   return (
     <>

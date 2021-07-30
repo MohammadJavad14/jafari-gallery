@@ -12,6 +12,9 @@ import {
     ORDER_PAY_RESULT_REQUEST,
     ORDER_PAY_RESULT_SUCCESS,
     ORDER_PAY_RESULT_FAIL,
+    ORDER_MY_LIST_REQUEST,
+    ORDER_MY_LIST_SUCCESS,
+    ORDER_MY_LIST_FAIL,
 } from '../constants/orderConstants';
 
 export const orderCreateReducer = (state = {}, action) => {
@@ -101,6 +104,29 @@ export const orderPayResultReducer = (state = {}, action) => {
             };
 
         case ORDER_PAY_RESULT_FAIL:
+            return {
+                loading: false,
+                error: action.payload,
+            };
+
+        default:
+            return state;
+    }
+};
+
+export const orderMyListReducer = (state = { orders: [] }, action) => {
+    switch (action.type) {
+        case ORDER_MY_LIST_REQUEST:
+            return {
+                loading: true,
+            };
+        case ORDER_MY_LIST_SUCCESS:
+            return {
+                loading: false,
+                orders: action.payload,
+            };
+
+        case ORDER_MY_LIST_FAIL:
             return {
                 loading: false,
                 error: action.payload,
