@@ -10,6 +10,7 @@ header {
     width: 375px;
     height: 115px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+    position: sticky;
 }
 
 .menu {
@@ -110,6 +111,23 @@ header {
 }
 
 .dropdown-content-visible {
+    transition: ease-in opacity 0.2s;
+    opacity: 1;
+}
+
+.admin_dropdown-content {
+    display: flex;
+    transition: ease-in opacity 0.2s;
+    opacity: 0;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    background: white;
+    position: relative;
+    z-index: 20;
+    height: 80px;
+}
+
+.admin_dropdown-content-visible {
     transition: ease-in opacity 0.2s;
     opacity: 1;
 }

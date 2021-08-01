@@ -12,11 +12,15 @@ const Header = () => {
   const { userInfo } = userLogin;
 
   const [dropdownIsVisible, setDropdownIsVisible] = useState(false);
+  const [adminDropdownIsVisible, setAdminDropdownIsVisible] = useState(false);
 
   const dropdownHandler = () => {
     setDropdownIsVisible(!dropdownIsVisible);
   };
 
+  const adminDropdownHandler = () => {
+    setAdminDropdownIsVisible(!adminDropdownIsVisible);
+  };
   const logoutHandler = () => {
     dispatch(logout());
     setDropdownIsVisible(!dropdownIsVisible);
@@ -58,9 +62,36 @@ const Header = () => {
           ) : (
             <Link to='/login'>
               <button>
-                <i class='fas fa-sign-in-alt'></i>
+                <i className='fas fa-sign-in-alt'></i>
               </button>
             </Link>
+          )}
+          {userInfo && userInfo.isAdmin && (
+            <div className={classes.dropdown}>
+              <button
+                className={classes['dropdown-btn']}
+                onClick={adminDropdownHandler}
+              >
+                <i className='fas fa-caret-down'></i>
+                <h4 className={classes['user-name']}>ادمین</h4>
+              </button>
+              <div
+                className={`${classes['admin_dropdown-content']} ${
+                  adminDropdownIsVisible &&
+                  classes['admin_dropdown-content-visible']
+                }`}
+              >
+                <button onClick={adminDropdownHandler}>
+                  <Link to='/admin/userlist'>کاربرها</Link>
+                </button>
+                <button onClick={adminDropdownHandler}>
+                  <Link to='/admin/productlist'>محصولات</Link>
+                </button>
+                <button onClick={adminDropdownHandler}>
+                  <Link to='/admin/orderlist'>سفارشات</Link>
+                </button>
+              </div>
+            </div>
           )}
         </div>
         <form action='search' className={classes['header-search-form']}>
