@@ -62,10 +62,6 @@ const registerUser = asyncHandler(async(req, res) => {
     }
 });
 
-// @desc    Updtate user profile
-// @route   PUT /api/users/profile
-// @access  Private
-
 const getUserProfile = asyncHandler(async(req, res) => {
     const user = await User.findById(req.user._id);
 
@@ -82,6 +78,10 @@ const getUserProfile = asyncHandler(async(req, res) => {
         throw new Error('کاربر یافت نشد');
     }
 });
+
+// @desc    Updtate user profile
+// @route   PUT /api/users/profile
+// @access  Private
 
 const updateUserProfile = asyncHandler(async(req, res) => {
     const user = await User.findById(req.user._id);
@@ -120,4 +120,72 @@ const getUsers = asyncHandler(async(req, res) => {
     res.json(users);
 });
 
-export { authUser, getUserProfile, registerUser, updateUserProfile, getUsers };
+// @desc    Delete user
+// @route   DELETE /api/users/:id
+// @access  Private/Admin
+
+const deleteUser = asyncHandler(async(req, res) => {
+    const user = await User.findById(req.params.id);
+
+    if (user) {
+        await user.remove();
+        res.json({ message: 'کاربر حذف شد' });
+    } else {
+        res.status(404);
+        throw new Error('User not found');
+    }
+});
+
+// @desc    GET all user by ID
+// @route   GET /api/users/:id
+// @access  Private/Admin
+
+const getUsersById = asyncHandler(async(req, res) => {
+    const user = await User.findById(req.params.id).select('-password');
+
+    if (user) {
+        res.json(user);
+    } else {
+        res.status(404);
+        throw new Error('User not found');
+    }
+});
+
+// @desc    Updtate user
+// @route   PUT /api/users/:id
+// @access  Private/Admin
+
+const updateUser = asyncHandler(async(req, res) => {
+    const user = await User.findById(req.params.id);
+
+    if (user) {
+        user.name = req.body.name || user.name;
+        user.phoneNumber = req.body.phoneNumber || user.phoneNumber;
+        user.email = req.body.email || user.email;
+        user.isAdmin = req.body.isAdmin;
+
+        const updatedUser = await user.save();
+
+        res.json({
+            _id: updatedUser._id,
+            name: updatedUser.name,
+            email: updatedUser.email,
+            phoneNumber: updatedUser.phoneNumber,
+            isAdmin: updatedUser.isAdmin,
+        });
+    } else {
+        res.status(404);
+        throw new Error('کاربر یافت نشد');
+    }
+});
+
+export {
+    authUser,
+    getUserProfile,
+    registerUser,
+    updateUserProfile,
+    getUsers,
+    deleteUser,
+    getUsersById,
+    updateUser,
+};

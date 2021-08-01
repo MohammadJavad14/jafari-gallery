@@ -38,6 +38,18 @@
     width: 45%;
 }
 
+.btn-add {
+    margin: 8px;
+    padding: 8px;
+    color: #fff;
+    background: #25da14;
+    border: 1px solid #25da14;
+    border-radius: 8px;
+    width: auto;
+    display: flex;
+    align-items: center;
+}
+
 .title {
     margin: 0 8px;
     padding-bottom: 4px;

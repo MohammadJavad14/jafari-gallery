@@ -1,25 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/UI/Message';
 import Loader from '../components/UI/Loader';
-import { listUsers } from '../actions/userAction';
+import { listUsers, deleteUser } from '../actions/userAction';
 import Card from '../components/UI/Card';
-import { Table } from 'react-bootstrap';
 
 import classes from './UserListScreen.module.css';
-const UserListScreen = () => {
+const UserListScreen = ({ history }) => {
   const dispatch = useDispatch();
 
   const userList = useSelector((state) => state.userList);
   const { loading, error, users } = userList;
 
+  const userDelete = useSelector((state) => state.userDelete);
+  const { success: successDelete } = userDelete;
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   useEffect(() => {
-    dispatch(listUsers());
-  }, [dispatch]);
+    if (userInfo && userInfo.isAdmin) {
+      dispatch(listUsers());
+    } else {
+      history.push('/login');
+    }
+  }, [dispatch, history, successDelete, userInfo]);
 
   const deleteHandler = (id) => {
-    console.log('delete');
+    if (window.confirm('آیا مطمئن هستید که کاربر حذف شود؟')) {
+      dispatch(deleteUser(id));
+    }
   };
   return (
     <div>
@@ -57,7 +68,7 @@ const UserListScreen = () => {
                 </h5>
               </div>
 
-              <Link to={`/user/${user._id}`}>
+              <Link to={`/admin/user/${user._id}/edit`}>
                 <button className={classes['btn-edit']}>
                   <i className='fas fa-edit' style={{ color: 'white' }}></i>
                 </button>

@@ -115,6 +115,10 @@ header {
     opacity: 1;
 }
 
+.dropdown-content button {
+    margin: 6px 0;
+}
+
 .admin_dropdown-content {
     display: flex;
     transition: ease-in opacity 0.2s;
@@ -132,6 +136,6 @@ header {
     opacity: 1;
 }
 
-.dropdown-content button {
+.admin_dropdown-content button {
     margin: 6px 0;
 }
