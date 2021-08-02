@@ -8,6 +8,7 @@ import Row from '../components/UI/Row';
 import { Link } from 'react-router-dom';
 import Seprator from '../components/UI/Seprator';
 import { createOrder, payOrder } from '../actions/orderActions';
+import Loader from '../components/UI/Loader';
 
 const PlaceOrderScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -34,7 +35,7 @@ const PlaceOrderScreen = ({ history }) => {
   const { order, success, error } = orderCreate;
 
   const orderPay = useSelector((state) => state.orderPay);
-  const { paymentURL } = orderPay;
+  const { paymentURL, loading } = orderPay;
 
   useEffect(() => {
     if (paymentURL?.url) {
@@ -67,6 +68,7 @@ const PlaceOrderScreen = ({ history }) => {
 
   return (
     <div>
+      {loading && <Loader />}
       <Card className='l'>
         <CheckoutSteps step1 step2 step3 step4 />
       </Card>

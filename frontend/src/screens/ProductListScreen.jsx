@@ -100,11 +100,11 @@ const ProductListScreen = ({ history, match }) => {
               </div>
               <div className={classes['order-summery']}>
                 <h5>نام :</h5>
-                <h4>{product.name}</h4>
+                <h5>{product.name}</h5>
               </div>
               <div className={classes['order-summery']}>
                 <h5>قیمت :</h5>
-                <h5>{product.price}</h5>
+                <h5>{`${product.price.toLocaleString('fa-IR')} تومان`}</h5>
               </div>
               <div className={classes['order-summery']}>
                 <h5>دسته بندی :</h5>

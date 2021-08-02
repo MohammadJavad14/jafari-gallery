@@ -8,6 +8,7 @@ import { myOrdersList } from '../actions/orderActions';
 import Card from '../components/UI/Card';
 
 import classes from './ProfileScreen.module.css';
+import { Link } from 'react-router-dom';
 
 const ProfileScreen = ({ location, history }) => {
   const [name, setName] = useState('');
@@ -127,6 +128,7 @@ const ProfileScreen = ({ location, history }) => {
       <div>
         <Card className='l'>
           <h3>سفارش های من</h3>
+          {loadingOrders && <Loader />}
           {errorOrders && <h5>{errorOrders}</h5>}
         </Card>
         {orders?.map((order) => {
@@ -154,11 +156,9 @@ const ProfileScreen = ({ location, history }) => {
                     : 'تحویل داده نشده'}
                 </h5>
               </div>
-              {/* <Link to={`/order/${order._id}`}>
-                  <button className={classes['btn-submit']}>
-                    مشاهده جزئیات
-                  </button>
-                </Link> */}
+              <Link to={`/order/${order._id}`}>
+                <button className={classes['btn-submit']}>مشاهده جزئیات</button>
+              </Link>
             </Card>
           );
         })}

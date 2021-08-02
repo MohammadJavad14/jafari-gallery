@@ -69,7 +69,7 @@ const updateOrderToPaid = asyncHandler(async(req, res, err) => {
         const payParams = {
             merchant_id: '6cded376-3063-11e9-a98e-005056a205be',
             amount: order.totalPrice,
-            callback_url: `http://localhost:3000/order/${order._id}/paycallback`,
+            callback_url: `http://localhost:3000/orderpay/${order._id}/paycallback`,
             description: 'خرید از گالری حعفری',
             metadata: [{ eamil: order.eamil }, { mobile: order.phoneNumber }],
         };
@@ -156,10 +156,47 @@ const getMyOrders = asyncHandler(async(req, res, err) => {
         console.log(err);
     }
 });
+
+// @desc    GET all orders
+// @route   GET /api/orders
+// @access  Private/admin
+
+const getOrders = asyncHandler(async(req, res, err) => {
+    try {
+        const orders = await Order.find({}).populate('user', 'id name');
+
+        res.json(orders);
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+// @desc    Update order to delivered
+// @route   GET /api/orders/:id/deliver
+// @access  Private/Admin
+
+const updateOrderToDelivered = asyncHandler(async(req, res, err) => {
+    const order = await Order.findById(req.params.id);
+
+    if (order) {
+        order.isDelivered = true;
+        order.deliveredAt = Date.now();
+
+        const updatedOrder = await order.save();
+
+        res.json(updatedOrder);
+    } else {
+        res.status(404);
+        throw new Error('سفارش یافت نشد');
+    }
+});
+
 export {
     addOrderItems,
     getOrderById,
     updateOrderToPaid,
+    updateOrderToDelivered,
     payCallback,
     getMyOrders,
+    getOrders,
 };

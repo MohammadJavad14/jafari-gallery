@@ -6,37 +6,18 @@ import classes from './PlaceOrderScreen.module.css';
 import Loader from '../components/UI/Loader';
 import Row from '../components/UI/Row';
 import { Link } from 'react-router-dom';
-import { getOrderDetails, deliverOrder } from '../actions/orderActions';
-import { ORDER_DELIVERE_RESET } from '../constants/orderConstants';
+import { getPayOrderResult } from '../actions/orderActions';
 
-const OrderScreen = ({ match, history }) => {
+const OrderPayScreen = ({ match }) => {
   const orderId = match.params.id;
   const dispatch = useDispatch();
-
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
-
-  const orderDetails = useSelector((state) => state.orderDetails);
-
-  const { order, loading, error } = orderDetails;
-
-  const orderDeliver = useSelector((state) => state.orderDeliver);
-
-  const { loading: loadingDeliver, success: successDeliver } = orderDeliver;
-
   useEffect(() => {
-    if (!userInfo) {
-      history.push('/login');
-    }
-    if (!order || successDeliver) {
-      dispatch({ type: ORDER_DELIVERE_RESET });
-      dispatch(getOrderDetails(orderId));
-    }
-  }, [dispatch, orderId, order, successDeliver, userInfo, history]);
+    dispatch(getPayOrderResult(orderId));
+  }, [dispatch, orderId]);
 
-  const deliverHandler = () => {
-    dispatch(deliverOrder(orderId));
-  };
+  const orderPayResult = useSelector((state) => state.orderPayResult);
+
+  const { paymentResult, loading, error } = orderPayResult;
 
   return loading ? (
     <Loader />
@@ -44,36 +25,33 @@ const OrderScreen = ({ match, history }) => {
     <Message>{error}</Message>
   ) : (
     <>
-      <h3> سفارش {order._id}</h3>
+      <h3> سفارش {paymentResult?._id}</h3>
       <div>
         <Card className='l'>
           <div className={classes['order-details']}>
             <h3>آدرس :</h3>
             <p>
-              {order.shippingAddress.country}, {order.shippingAddress.city},{' '}
-              {order.shippingAddress.address},{' '}
-              {order.shippingAddress.postalCode}
+              {paymentResult?.shippingAddress.country},{' '}
+              {paymentResult?.shippingAddress.city},{' '}
+              {paymentResult?.shippingAddress.address},{' '}
+              {paymentResult?.shippingAddress.postalCode}
             </p>
           </div>
-          {order.isDelivered ? (
-            <Message>
-              تحویل شده در
-              {new Date(order.deliveredAt).toLocaleTimeString('fa-IR')}
-              {' , '}
-              {new Date(order.deliveredAt).toLocaleDateString('fa-IR')}
-            </Message>
+          {paymentResult?.isDelivered ? (
+            <Message>تحویل داده شده در {paymentResult?.deliveredAt}</Message>
           ) : (
             <Message>تحویل داده نشده است</Message>
           )}
           <div className={classes['order-details']}>
             <h3>روش پرداخت :</h3>
-            <p>{order.paymentMethod}</p>
+            <p>{paymentResult?.paymentMethod}</p>
           </div>
-          {order.isPaid ? (
+          {paymentResult?.isPaid ? (
             <Message>
-              پرداخت شده در {new Date(order.paidAt).toLocaleTimeString('fa-IR')}
+              پرداخت شده در{' '}
+              {new Date(paymentResult?.paidAt).toLocaleTimeString('fa-IR')}
               {' , '}
-              {new Date(order.paidAt).toLocaleDateString('fa-IR')}
+              {new Date(paymentResult?.paidAt).toLocaleDateString('fa-IR')}
             </Message>
           ) : (
             <Message>پرداخت نشده است</Message>
@@ -82,11 +60,11 @@ const OrderScreen = ({ match, history }) => {
         <Card className='l'>
           <div className={classes['order-items']}>
             <h3>سفارشات :</h3>
-            {order.orderItems.length === 0 ? (
+            {paymentResult?.orderItems.length === 0 ? (
               <Message> سفارش شما خالی می باشد</Message>
             ) : (
               <>
-                {order.orderItems.map((item, index) => (
+                {paymentResult?.orderItems.map((item, index) => (
                   <div className={classes.container} key={index}>
                     <div className={classes['img-container']}>
                       <img src={item.image} alt={item.name} />
@@ -117,7 +95,7 @@ const OrderScreen = ({ match, history }) => {
           <div className={classes['cart-summery']}>
             <h5>تعداد محصولات :</h5>
             <h5 className={classes['number-product']}>
-              {order.orderItems
+              {paymentResult?.orderItems
                 .reduce((acc, item) => acc + item.qty, 0)
                 .toLocaleString('fa-IR')}
             </h5>
@@ -125,38 +103,31 @@ const OrderScreen = ({ match, history }) => {
           <div className={classes['cart-summery']}>
             <h5>قیمت محصولات :</h5>
             <h3 className={classes['summery-price']}>
-              {`${order.itemsPrice?.toLocaleString('fa-IR')} تومان`}
+              {`${paymentResult?.itemsPrice?.toLocaleString('fa-IR')} تومان`}
             </h3>
           </div>
           <div className={classes['cart-summery']}>
             <h5>هزینه ارسال :</h5>
             <h3 className={classes['summery-price']}>
-              {`${order.shippingPrice.toLocaleString('fa-IR')} تومان`}
+              {`${paymentResult?.shippingPrice.toLocaleString('fa-IR')} تومان`}
             </h3>
           </div>
           <div className={classes['cart-summery']}>
             <h5>مالیات :</h5>
             <h3 className={classes['summery-price']}>
-              {`${order.taxPrice.toLocaleString('fa-IR')} تومان`}
+              {`${paymentResult?.taxPrice.toLocaleString('fa-IR')} تومان`}
             </h3>
           </div>
           <div className={classes['cart-summery']}>
             <h5>جمع کل :</h5>
             <h3 className={classes['summery-price']}>
-              {`${order.totalPrice.toLocaleString('fa-IR')} تومان`}
+              {`${paymentResult?.totalPrice.toLocaleString('fa-IR')} تومان`}
             </h3>
           </div>
-          {loadingDeliver && <Loader />}
-          {userInfo &&
-            userInfo.isAdmin &&
-            order.isPaid &&
-            !order.isDelivered && (
-              <button onClick={deliverHandler}>تحویل داده شد</button>
-            )}
         </div>
       </div>
     </>
   );
 };
 
-export default OrderScreen;
+export default OrderPayScreen;
