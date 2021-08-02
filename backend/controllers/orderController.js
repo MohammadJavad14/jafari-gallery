@@ -69,7 +69,7 @@ const updateOrderToPaid = asyncHandler(async(req, res, err) => {
         const payParams = {
             merchant_id: '6cded376-3063-11e9-a98e-005056a205be',
             amount: order.totalPrice,
-            callback_url: `http://localhost:3000/orderpay/${order._id}/paycallback`,
+            callback_url: `https://jafari-gallery.herokuapp.com/orderpay/${order._id}/paycallback`,
             description: 'خرید از گالری حعفری',
             metadata: [{ eamil: order.eamil }, { mobile: order.phoneNumber }],
         };
