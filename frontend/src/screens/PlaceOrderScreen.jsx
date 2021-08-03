@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import Seprator from '../components/UI/Seprator';
 import { createOrder, payOrder } from '../actions/orderActions';
 import Loader from '../components/UI/Loader';
+import Header from '../components/Header';
 
 const PlaceOrderScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -67,7 +68,8 @@ const PlaceOrderScreen = ({ history }) => {
   };
 
   return (
-    <div>
+    <>
+      <Header />
       {loading && <Loader />}
       <Card className='l'>
         <CheckoutSteps step1 step2 step3 step4 />
@@ -164,7 +166,7 @@ const PlaceOrderScreen = ({ history }) => {
           پرداخت و نهایی کردن سفارش
         </button>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -13,6 +13,7 @@ import { PRODUCT_CREATE_RESET } from '../constants/productConstants';
 import Card from '../components/UI/Card';
 
 import classes from './UserListScreen.module.css';
+import Header from '../components/Header';
 
 const ProductListScreen = ({ history, match }) => {
   const dispatch = useDispatch();
@@ -69,7 +70,8 @@ const ProductListScreen = ({ history, match }) => {
     dispatch(createProduct());
   };
   return (
-    <div>
+    <>
+      <Header />
       <Card className='l'>
         <h3 className={classes.title}>محصولات</h3>
         <div>
@@ -126,7 +128,7 @@ const ProductListScreen = ({ history, match }) => {
           ))}
         </>
       )}
-    </div>
+    </>
   );
 };
 

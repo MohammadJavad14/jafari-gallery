@@ -14,17 +14,20 @@ const SearchBox = ({ history }) => {
     }
   };
   return (
-    <form className={classes['header-search-form']} onSubmit={submitHandler}>
-      <input
-        type='text'
-        placeholder='جستجو در محصولات'
-        className={classes['main-search-box']}
-        onChange={(e) => setKeyword(e.target.value)}
-      />
-      <button>
-        <i className={`${classes['search-icon']} fas fa-search`}></i>
-      </button>
-    </form>
+    <div className={classes.container}>
+      <form className={classes['header-search-form']} onSubmit={submitHandler}>
+        <input
+          type='text'
+          placeholder='جستجو در محصولات'
+          className={classes['main-search-box']}
+          onChange={(e) => setKeyword(e.target.value)}
+          autoFocus={true}
+        />
+        <button>
+          <i className={`${classes['search-icon']} fas fa-search`}></i>
+        </button>
+      </form>
+    </div>
   );
 };
 

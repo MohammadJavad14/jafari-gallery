@@ -9,6 +9,7 @@ import Card from '../components/UI/Card';
 
 import classes from './ProfileScreen.module.css';
 import { Link } from 'react-router-dom';
+import Header from '../components/Header';
 
 const ProfileScreen = ({ location, history }) => {
   const [name, setName] = useState('');
@@ -60,6 +61,7 @@ const ProfileScreen = ({ location, history }) => {
 
   return (
     <>
+      <Header />
       <div className={classes['form-container']}>
         <Card className='l'>
           <h3 className={classes['form-title']}>حساب من</h3>

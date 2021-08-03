@@ -5,6 +5,7 @@ import Message from '../components/UI/Message';
 import Loader from '../components/UI/Loader';
 import { listOrders } from '../actions/orderActions';
 import Card from '../components/UI/Card';
+import Header from '../components/Header';
 
 import classes from './UserListScreen.module.css';
 const OrderListScreen = ({ history }) => {
@@ -25,7 +26,8 @@ const OrderListScreen = ({ history }) => {
   }, [dispatch, history, userInfo]);
 
   return (
-    <div>
+    <>
+      <Header />
       <h3 className={classes.title}>سفارشات</h3>
       {loading ? (
         <Loader />
@@ -90,7 +92,7 @@ const OrderListScreen = ({ history }) => {
           ))}
         </>
       )}
-    </div>
+    </>
   );
 };
 

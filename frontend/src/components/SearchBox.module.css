@@ -1,11 +1,15 @@
+.container {
+    display: flex;
+    justify-content: center;
+}
+
 .header-search-form {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background: #eeecec;
-    margin: 4px 18px;
-    margin-top: 0;
+    margin: 24px 12px;
     padding: 5px 8px;
     height: 40px;
     border-radius: 8px;

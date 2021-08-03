@@ -7,6 +7,8 @@ import Row from '../components/UI/Row';
 import classes from './CartScreen.module.css';
 import Message from '../components/UI/Message';
 import Seprator from '../components/UI/Seprator';
+import Header from '../components/Header';
+
 const CartScreen = ({ match, location, history }) => {
   const productId = match.params.id;
 
@@ -35,6 +37,8 @@ const CartScreen = ({ match, location, history }) => {
 
   return (
     <>
+      <Header />
+
       <Card className='l'>
         <h3>سبد خرید</h3>
       </Card>

@@ -6,6 +6,7 @@ import Row from '../components/UI/Row';
 import Seprator from '../components/UI/Seprator';
 import classes from './HomeScreen.module.css';
 import Loader from '../components/UI/Loader';
+import Header from '../components/Header';
 const HomeScreen = () => {
   const dispatch = useDispatch();
 
@@ -17,6 +18,7 @@ const HomeScreen = () => {
 
   return (
     <>
+      <Header />
       {loading ? (
         <Loader />
       ) : error ? (

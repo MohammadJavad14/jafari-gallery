@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Header from './components/Header';
 import Footer from './components/Footer';
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScrenn';
@@ -24,7 +23,6 @@ import SearchScreen from './screens/SearchScreen';
 const App = () => {
   return (
     <Router>
-      <Header />
       <section>
         <main className={classes.main}>
           <Route path='/order/:id' component={OrderScreen} />

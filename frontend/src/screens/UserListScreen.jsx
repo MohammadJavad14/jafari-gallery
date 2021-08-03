@@ -7,6 +7,7 @@ import { listUsers, deleteUser } from '../actions/userAction';
 import Card from '../components/UI/Card';
 
 import classes from './UserListScreen.module.css';
+import Header from '../components/Header';
 const UserListScreen = ({ history }) => {
   const dispatch = useDispatch();
 
@@ -33,7 +34,8 @@ const UserListScreen = ({ history }) => {
     }
   };
   return (
-    <div>
+    <>
+      <Header />
       <h3 className={classes.title}>کاربرها</h3>
       {loading ? (
         <Loader />
@@ -83,7 +85,7 @@ const UserListScreen = ({ history }) => {
           ))}
         </>
       )}
-    </div>
+    </>
   );
 };
 
