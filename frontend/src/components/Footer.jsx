@@ -18,7 +18,6 @@ const Footer = () => {
             <Link to='/'>
               <button>
                 <i className='fas fa-home'></i>
-                <p>خانه</p>
               </button>
             </Link>
           </li>
@@ -26,7 +25,13 @@ const Footer = () => {
             <Link to='/categories'>
               <button>
                 <i className='fas fa-grip-horizontal'></i>
-                <p>دسته بندی ها</p>
+              </button>
+            </Link>
+          </li>
+          <li className={classes['footer-item']}>
+            <Link to='/search/:?'>
+              <button>
+                <i className='fas fa-search'></i>
               </button>
             </Link>
           </li>
@@ -39,21 +44,14 @@ const Footer = () => {
                     {numberOfProductInBag.toLocaleString('fa-IR')}
                   </div>
                 )}
-                <p
-                  className={`${classes['bag-text']} ${
-                    numberOfProductInBag !== 0 && classes['bag-text__active']
-                  }`}
-                >
-                  سبد خرید
-                </p>
               </button>
             </Link>
           </li>
+
           <li className={classes['footer-item']}>
             <Link to='/profile'>
               <button>
                 <i className='far fa-user'></i>
-                <p>حساب من</p>
               </button>
             </Link>
           </li>

@@ -12,14 +12,16 @@ const Header = () => {
   const { userInfo } = userLogin;
 
   const [dropdownIsVisible, setDropdownIsVisible] = useState(false);
-  const [adminDropdownIsVisible, setAdminDropdownIsVisible] = useState(false);
+  const [overlayIsVisible, setOverlayIsVisible] = useState(false);
 
   const dropdownHandler = () => {
     setDropdownIsVisible(!dropdownIsVisible);
+    setOverlayIsVisible(!overlayIsVisible);
   };
 
-  const adminDropdownHandler = () => {
-    setAdminDropdownIsVisible(!adminDropdownIsVisible);
+  const overlayHandler = () => {
+    setOverlayIsVisible(!overlayIsVisible);
+    setDropdownIsVisible(!dropdownIsVisible);
   };
   const logoutHandler = () => {
     dispatch(logout());
@@ -30,80 +32,67 @@ const Header = () => {
     <header>
       <nav className={classes['main-nav']}>
         <div className={classes['menu']}>
-          <Link to='/menu'>
-            <button>
-              <i className={`${classes['menu-icon']} fas fa-bars`}></i>
-            </button>
-          </Link>
           <Link to='/'>
             <h3 className={classes.brand}>گالری جعفری</h3>
           </Link>
-          {userInfo ? (
-            <div className={classes.dropdown}>
-              <button
-                className={classes['dropdown-btn']}
-                onClick={dropdownHandler}
-              >
-                <i className='fas fa-caret-down'></i>
-                <h4 className={classes['user-name']}>{userInfo.name}</h4>
-              </button>
+          {dropdownHandler && userInfo ? (
+            <>
               <div
-                className={`${classes['dropdown-content']} ${
-                  dropdownIsVisible && classes['dropdown-content-visible']
+                className={`${classes.overlay} ${
+                  overlayIsVisible && classes['overlay-visible']
                 }`}
-              >
-                <button onClick={dropdownHandler}>
-                  <Link to='/profile'>حساب من</Link>
+                onClick={overlayHandler}
+              ></div>
+              <div className={classes.dropdown}>
+                <button
+                  className={classes['dropdown-btn']}
+                  onClick={dropdownHandler}
+                >
+                  <i
+                    className='far fa-user-circle'
+                    style={{ fontSize: '400%' }}
+                  ></i>
                 </button>
+                <div
+                  className={`${classes['dropdown-content']} ${
+                    dropdownIsVisible && classes['dropdown-content-visible']
+                  }`}
+                >
+                  <h4 className={classes['user-name']}>{userInfo.name}</h4>
+                  <button onClick={dropdownHandler}>
+                    <Link to='/profile'>حساب من</Link>
+                  </button>
 
-                <button onClick={logoutHandler}>خروج</button>
+                  {userInfo && userInfo.isAdmin && (
+                    <>
+                      <h4 className={classes['user-name']}>ادمین</h4>
+                      <button onClick={dropdownHandler}>
+                        <Link to='/admin/userlist'>کاربرها</Link>
+                      </button>
+                      <button onClick={dropdownHandler}>
+                        <Link to='/admin/productlist'>محصولات</Link>
+                      </button>
+                      <button onClick={dropdownHandler}>
+                        <Link to='/admin/orderlist'>سفارشات</Link>
+                      </button>
+                    </>
+                  )}
+
+                  <button onClick={logoutHandler}>خروج</button>
+                </div>
               </div>
-            </div>
+            </>
           ) : (
             <Link to='/login'>
               <button>
-                <i className='fas fa-sign-in-alt'></i>
+                <i
+                  className='far fa-user-circle'
+                  style={{ fontSize: '400%' }}
+                ></i>
               </button>
             </Link>
           )}
-          {userInfo && userInfo.isAdmin && (
-            <div className={classes.dropdown}>
-              <button
-                className={classes['dropdown-btn']}
-                onClick={adminDropdownHandler}
-              >
-                <i className='fas fa-caret-down'></i>
-                <h4 className={classes['user-name']}>ادمین</h4>
-              </button>
-              <div
-                className={`${classes['admin_dropdown-content']} ${
-                  adminDropdownIsVisible &&
-                  classes['admin_dropdown-content-visible']
-                }`}
-              >
-                <button onClick={adminDropdownHandler}>
-                  <Link to='/admin/userlist'>کاربرها</Link>
-                </button>
-                <button onClick={adminDropdownHandler}>
-                  <Link to='/admin/productlist'>محصولات</Link>
-                </button>
-                <button onClick={adminDropdownHandler}>
-                  <Link to='/admin/orderlist'>سفارشات</Link>
-                </button>
-              </div>
-            </div>
-          )}
         </div>
-        <form action='search' className={classes['header-search-form']}>
-          <input
-            type='text'
-            placeholder='جستجو در محصولات'
-            className={classes['main-search-box']}
-          />
-          <button>
-            <i className={`${classes['search-icon']} fas fa-search`}></i>
-          </button>
-        </form>
       </nav>
     </header>
   );

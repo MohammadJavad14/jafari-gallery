@@ -4,7 +4,7 @@
     margin: auto;
     background: white;
     width: 375px;
-    height: 68px;
+    height: 60px;
     display: flex;
     /* z-index: 5; */
     justify-content: center;
@@ -22,7 +22,7 @@
 .footer-item {
     list-style: none;
     flex: content;
-    margin: 8px;
+    margin: 12px;
     padding: 4px 12px;
 }
 
@@ -30,19 +30,6 @@
     background: inherit;
     border: none;
     height: 20px;
-}
-
-.footer-item p {
-    font-size: 80%;
-}
-
-.bag-text {
-    font-size: 80%;
-    /* margin-top: -20px; */
-}
-
-.bag-text.bag-text__active {
-    margin-top: -20px;
 }
 
 .product-number-in-bag {

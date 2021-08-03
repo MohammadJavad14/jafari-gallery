@@ -8,7 +8,7 @@ header {
     align-items: center;
     flex-wrap: wrap;
     width: 375px;
-    height: 115px;
+    height: 80px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
     position: sticky;
 }
@@ -30,8 +30,6 @@ header {
 .menu button {
     border: none;
     background: inherit;
-    padding: 0 8px;
-    margin: 0;
 }
 
 
@@ -92,50 +90,48 @@ header {
 .dropdown-btn {
     display: flex;
     align-items: center;
+    margin-top: -70px;
+    border: none;
+    background: inherit;
 }
 
 .user-name {
-    margin: 4px;
+    /* margin: 4px; */
+    background: inherit;
 }
 
 .dropdown-content {
-    display: flex;
-    transition: ease-in opacity 0.2s;
-    opacity: 0;
+    display: none;
     flex-direction: column;
     border: 1px solid #ccc;
     background: white;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
     z-index: 20;
-    height: 80px;
+    height: 100%;
+    width: 50%;
 }
 
 .dropdown-content-visible {
-    transition: ease-in opacity 0.2s;
-    opacity: 1;
+    display: flex;
 }
 
 .dropdown-content button {
     margin: 6px 0;
 }
 
-.admin_dropdown-content {
-    display: flex;
-    transition: ease-in opacity 0.2s;
-    opacity: 0;
-    flex-direction: column;
-    border: 1px solid #ccc;
-    background: white;
-    position: relative;
-    z-index: 20;
-    height: 80px;
+.overlay {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
 }
 
-.admin_dropdown-content-visible {
-    transition: ease-in opacity 0.2s;
-    opacity: 1;
-}
-
-.admin_dropdown-content button {
-    margin: 6px 0;
+.overlay.overlay-visible {
+    display: block;
 }

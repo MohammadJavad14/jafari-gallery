@@ -1,0 +1,24 @@
+.header-search-form {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #eeecec;
+    margin: 4px 18px;
+    margin-top: 0;
+    padding: 5px 8px;
+    height: 40px;
+    border-radius: 8px;
+}
+
+.header-search-form button {
+    border: none;
+    background: inherit;
+    padding-top: 5px;
+}
+
+.main-search-box {
+    border: none;
+    background: inherit;
+    width: 100%;
+}
