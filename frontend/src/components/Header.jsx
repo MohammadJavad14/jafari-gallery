@@ -50,7 +50,7 @@ const Header = () => {
                 >
                   <i
                     className='far fa-user-circle'
-                    style={{ fontSize: '400%' }}
+                    style={{ fontSize: '300%' }}
                   ></i>
                 </button>
                 <div
@@ -87,7 +87,7 @@ const Header = () => {
               <button>
                 <i
                   className='far fa-user-circle'
-                  style={{ fontSize: '400%' }}
+                  style={{ fontSize: '300%' }}
                 ></i>
               </button>
             </Link>
