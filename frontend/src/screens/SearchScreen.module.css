@@ -1,0 +1,35 @@
+.container {
+    position: sticky;
+    top: 0;
+    height: 800px;
+    width: 100%;
+}
+
+.product-name {
+    width: 73%;
+    margin: 12px 0;
+    padding-right: 8px;
+    text-align: right;
+}
+
+.img-container {
+    width: 30%;
+    margin-top: 12px;
+    align-items: center;
+}
+
+.product-details {
+    width: 70%;
+    margin-top: 8px;
+}
+
+.product-details {
+    margin: 0 8px;
+}
+
+.product-stock {
+    /* margin-bottom: 6px; */
+    color: #ee4949;
+    font-size: 65%;
+    font-weight: lighter;
+}

@@ -4,7 +4,6 @@ import Footer from './components/Footer';
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScrenn';
 import CartScreen from './screens/CartScreen';
-import classes from './App.module.css';
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import ProfileScreen from './screens/ProfileScreen';
@@ -24,7 +23,7 @@ const App = () => {
   return (
     <Router>
       <section>
-        <main className={classes.main}>
+        <main>
           <Route path='/order/:id' component={OrderScreen} />
           <Route path='/orderpay/:id' component={OrderPayScreen} />
           <Route path='/shipping' component={ShippingScreen} />
@@ -41,7 +40,6 @@ const App = () => {
           <Route path='/admin/product/:id/edit' component={ProductEditScreen} />
           <Route path='/admin/orderlist' component={OrderListScreen} />
           <Route path='/search/:keyword' component={SearchScreen} />
-          {/* <Route path='/search' component={SearchScreen} /> */}
           <Route path='/' component={HomeScreen} exact />
         </main>
       </section>

@@ -13,6 +13,13 @@ const SearchBox = ({ history }) => {
       history.push('/');
     }
   };
+
+  const changeHandler = (e) => {
+    setKeyword(e.target.value);
+    if (keyword !== '') {
+      submitHandler(e);
+    }
+  };
   return (
     <div className={classes.container}>
       <form className={classes['header-search-form']} onSubmit={submitHandler}>
@@ -20,7 +27,7 @@ const SearchBox = ({ history }) => {
           type='text'
           placeholder='جستجو در محصولات'
           className={classes['main-search-box']}
-          onChange={(e) => setKeyword(e.target.value)}
+          onChange={changeHandler}
           autoFocus={true}
         />
         <button>
