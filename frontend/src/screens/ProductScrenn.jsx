@@ -62,11 +62,27 @@ const ProductScrenn = ({ history, match }) => {
   }
 
   useEffect(() => {
+    if (successProductReview) {
+      alert('دیدگاه شما ثبت شد');
+      setRating(0);
+      setComment('');
+      dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
+    }
     dispatch(listProductsDetails(match.params.id));
-  }, [dispatch, match]);
+  }, [dispatch, match, successProductReview]);
 
   const addToCartHandler = () => {
     history.push(`/cart/${match.params.id}?qty=${qty}`);
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    dispatch(
+      createProductReview(match.params.id, {
+        rating,
+        comment,
+      })
+    );
   };
 
   const persianPrice = product.price?.toLocaleString('fa-IR');
@@ -152,25 +168,26 @@ const ProductScrenn = ({ history, match }) => {
             <p>{product.description}</p>
           </Card>
           <h3>دیدگاه کاربران</h3>
-          <Card className='l'>
-            {product.reviews.length === 0 && <span>دیدگاهی ثبت نشده است</span>}
-            {product.reviews.map((review) => (
-              <div key={review._id}>
-                <strong>{review.name}</strong>
-                <Rating value={review.rating} />
-                <h5>
-                  {new Date(review.createdAt).toLocaleTimeString('fa-IR')}
-                  {' , '}
-                  {new Date(review.createdAt).toLocaleDateString('fa-IR')}
-                </h5>
-                <p>{review.comment}</p>
-              </div>
-            ))}
-          </Card>
+          {product.reviews.length === 0 && (
+            <Card className='l'>دیدگاهی ثبت نشده است</Card>
+          )}
+          {product.reviews.map((review) => (
+            <Card key={review._id} className='l'>
+              <strong>{review.name}</strong>
+              <Rating value={review.rating} />
+              <h5>
+                {new Date(review.createdAt).toLocaleTimeString('fa-IR')}
+                {' , '}
+                {new Date(review.createdAt).toLocaleDateString('fa-IR')}
+              </h5>
+              <p>{review.comment}</p>
+            </Card>
+          ))}
           <h3>دیدگاه خود را ثبت کنید</h3>
+          {errorProductReview && <Message>{errorProductReview}</Message>}
           <Card className='l'>
             {userInfo ? (
-              <form>
+              <form onSubmit={submitHandler}>
                 <label htmlFor='rating' className={classes.label}>
                   امتیاز محصول :{' '}
                 </label>

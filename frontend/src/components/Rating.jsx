@@ -8,33 +8,9 @@ const Rating = ({ value, text, color }) => {
         <i
           style={{ color, fontSize: 'small' }}
           className={
-            value >= 1
+            value >= 5
               ? 'fas fa-star'
-              : value >= 0.5
-              ? 'fas fa-star-half-alt'
-              : 'far fa-star'
-          }
-        ></i>
-      </span>
-      <span>
-        <i
-          style={{ color, fontSize: 'small' }}
-          className={
-            value >= 2
-              ? 'fas fa-star'
-              : value >= 1.5
-              ? 'fas fa-star-half-alt'
-              : 'far fa-star'
-          }
-        ></i>
-      </span>
-      <span>
-        <i
-          style={{ color, fontSize: 'small' }}
-          className={
-            value >= 3
-              ? 'fas fa-star'
-              : value >= 2.5
+              : value >= 4.5
               ? 'fas fa-star-half-alt'
               : 'far fa-star'
           }
@@ -56,9 +32,33 @@ const Rating = ({ value, text, color }) => {
         <i
           style={{ color, fontSize: 'small' }}
           className={
-            value >= 5
+            value >= 3
               ? 'fas fa-star'
-              : value >= 4.5
+              : value >= 2.5
+              ? 'fas fa-star-half-alt'
+              : 'far fa-star'
+          }
+        ></i>
+      </span>
+      <span>
+        <i
+          style={{ color, fontSize: 'small' }}
+          className={
+            value >= 2
+              ? 'fas fa-star'
+              : value >= 1.5
+              ? 'fas fa-star-half-alt'
+              : 'far fa-star'
+          }
+        ></i>
+      </span>
+      <span>
+        <i
+          style={{ color, fontSize: 'small' }}
+          className={
+            value >= 1
+              ? 'fas fa-star'
+              : value >= 0.5
               ? 'fas fa-star-half-alt'
               : 'far fa-star'
           }
