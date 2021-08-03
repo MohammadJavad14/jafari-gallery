@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Card from '../components/UI/Card';
 import classes from './RegisterScreen.module.css';
@@ -15,6 +15,10 @@ const ShippingScreen = ({ history }) => {
   const [country, setCountry] = useState(shippingAddress.country);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const submitHandler = (e) => {
     e.preventDefault();

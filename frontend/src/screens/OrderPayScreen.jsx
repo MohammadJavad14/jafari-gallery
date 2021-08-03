@@ -12,6 +12,7 @@ const OrderPayScreen = ({ match }) => {
   const orderId = match.params.id;
   const dispatch = useDispatch();
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(getPayOrderResult(orderId));
   }, [dispatch, orderId]);
 

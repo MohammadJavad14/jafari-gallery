@@ -25,6 +25,7 @@ const OrderScreen = ({ match, history }) => {
   const { loading: loadingDeliver, success: successDeliver } = orderDeliver;
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (!userInfo) {
       history.push('/login');
     }

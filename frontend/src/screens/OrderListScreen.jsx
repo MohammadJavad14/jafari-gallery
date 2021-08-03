@@ -18,6 +18,7 @@ const OrderListScreen = ({ history }) => {
   const { userInfo } = userLogin;
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (userInfo && userInfo.isAdmin) {
       dispatch(listOrders());
     } else {

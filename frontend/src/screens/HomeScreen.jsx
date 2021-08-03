@@ -13,6 +13,7 @@ const HomeScreen = () => {
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(listProducts());
   }, [dispatch]);
 

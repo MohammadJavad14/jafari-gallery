@@ -32,6 +32,7 @@ const UserEditScreen = ({ match, history }) => {
   } = userUpdate;
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (successUpdate) {
       dispatch({ type: USER_UPDATE_RESET });
       history.push('/admin/userlist');

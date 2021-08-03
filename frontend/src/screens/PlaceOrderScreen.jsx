@@ -39,6 +39,7 @@ const PlaceOrderScreen = ({ history }) => {
   const { paymentURL, loading } = orderPay;
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (paymentURL?.url) {
       window.location.replace(paymentURL.url);
     }

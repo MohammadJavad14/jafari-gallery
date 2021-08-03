@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Card from '../components/UI/Card';
 import classes from './PaymentScreen.module.css';
@@ -17,6 +17,10 @@ const PaymentScreen = ({ history }) => {
   const [paymentMethod, setPaymentMethod] = useState('زرین پال');
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const submitHandler = (e) => {
     e.preventDefault();

@@ -63,6 +63,7 @@ const ProductScrenn = ({ history, match }) => {
   }
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (successProductReview) {
       alert('دیدگاه شما ثبت شد');
       setRating(0);
