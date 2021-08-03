@@ -14,7 +14,7 @@ const Product = ({ product }) => {
         </h6>
         <Rating
           value={product.rating}
-          text={`از ${product.numReviews.toLocaleString('fa-IR')} امتیاز`}
+          text={`از (${product.numReviews.toLocaleString('fa-IR')} نظر)`}
         />
         <h4>{` ${persianPrice}  تومان `}</h4>
       </Link>

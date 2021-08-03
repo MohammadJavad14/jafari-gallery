@@ -38,6 +38,10 @@
 
 .bag-text {
     font-size: 80%;
+    /* margin-top: -20px; */
+}
+
+.bag-text.bag-text__active {
     margin-top: -20px;
 }
 
