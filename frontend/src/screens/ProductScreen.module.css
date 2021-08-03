@@ -143,3 +143,23 @@
 .product-number-input {
     text-align: center;
 }
+
+.btn-review {
+    width: 100%;
+    height: 40px;
+    border-radius: 8px;
+    color: #fff;
+    background: #2c7fdf;
+    border: 1px solid #2c7fdf;
+    padding: 0 20px;
+}
+
+.label {
+    display: inline-block;
+    margin: 12px 4px;
+}
+
+.textarea {
+    display: block;
+    margin: 8px auto;
+}

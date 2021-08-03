@@ -147,12 +147,11 @@ const OrderScreen = ({ match, history }) => {
             </h3>
           </div>
           {loadingDeliver && <Loader />}
-          {userInfo &&
-            userInfo.isAdmin &&
-            order.isPaid &&
-            !order.isDelivered && (
-              <button onClick={deliverHandler}>تحویل داده شد</button>
-            )}
+          {userInfo && userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+            <button onClick={deliverHandler} className={classes['delivered']}>
+              تحویل داده شد
+            </button>
+          )}
         </div>
       </div>
     </>

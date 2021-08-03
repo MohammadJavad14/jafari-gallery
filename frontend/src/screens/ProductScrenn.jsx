@@ -7,10 +7,22 @@ import Loader from '../components/UI/Loader';
 import classes from './ProductScreen.module.css';
 import { halfSpace } from '@persian-tools/persian-tools';
 
-import { listProductsDetails } from '../actions/productActions';
+import Rating from '../components/Rating';
+import Message from '../components/UI/Message';
+
+import {
+  listProductsDetails,
+  createProductReview,
+} from '../actions/productActions';
+
+import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants';
+import { Link } from 'react-router-dom';
 
 const ProductScrenn = ({ history, match }) => {
   const [qty, setQty] = useState(1);
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState('');
+
   let disable = false;
   const increaseQty = (e) => {
     e.preventDefault();
@@ -38,6 +50,13 @@ const ProductScrenn = ({ history, match }) => {
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
 
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const productReviewCreate = useSelector((state) => state.productReviewCreate);
+  const { success: successProductReview, error: errorProductReview } =
+    productReviewCreate;
+
   if (product.countInStock < 1) {
     disable = true;
   }
@@ -61,75 +80,137 @@ const ProductScrenn = ({ history, match }) => {
       ) : error ? (
         <h3>{error}</h3>
       ) : (
-        <Card className='l'>
-          <img src={product.image} alt={product.name} />
-          <h5 className={classes['product-name']}>{product.name}</h5>
-          <Seprator />
-          {colors && (
-            <div className={classes['colors-container']}>
-              {colors?.map((color) => (
-                <div key={color[0]} className={classes['color-container']}>
-                  <div
-                    className={classes.color}
-                    style={{ backgroundColor: color[2][1] }}
-                  ></div>
-                  <span className={classes['color-text']}>
-                    {halfSpace(color[1][1])}
-                  </span>
+        <>
+          <Card className='l'>
+            <img src={product.image} alt={product.name} />
+            <h5 className={classes['product-name']}>{product.name}</h5>
+            <Seprator />
+            {colors && (
+              <div className={classes['colors-container']}>
+                {colors?.map((color) => (
+                  <div key={color[0]} className={classes['color-container']}>
+                    <div
+                      className={classes.color}
+                      style={{ backgroundColor: color[2][1] }}
+                    ></div>
+                    <span className={classes['color-text']}>
+                      {halfSpace(color[1][1])}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
+            <Row>
+              <h1 className={classes.price}>{` ${persianPrice}  تومان `}</h1>
+              <h5 className={classes['product-stock']}>
+                {productStock < 1
+                  ? 'ناموجود'
+                  : productStock < 6
+                  ? `فقط ${productStock} عدد باقی مانده `
+                  : 'موجود در انبار'}
+              </h5>
+            </Row>
+
+            <form className={classes['add-cart-form']}>
+              <div className={classes.inputs}>
+                <button
+                  className={`${classes['product-count-inc']} ${
+                    disable && classes.disabled
+                  }`}
+                  onClick={increaseQty}
+                >
+                  +
+                </button>
+                <input
+                  type='nubmer'
+                  className={`${classes['product-number-input']} ${
+                    disable && classes.disabled
+                  }`}
+                  value={product.countInStock === 0 ? 0 : qty}
+                  onChange={qtyHandler}
+                />
+                <button
+                  className={`${classes['product-count-dec']} ${
+                    disable && classes.disabled
+                  }`}
+                  onClick={decreaseQty}
+                >
+                  -
+                </button>
+              </div>
+              <button
+                className={`${classes['add-to-card']} ${
+                  disable && classes.disabled
+                }`}
+                onClick={addToCartHandler}
+                disabled={disable ? true : false}
+              >
+                {disable ? 'موجود شد اطلاع بده' : 'افزودن به سبد خرید'}
+              </button>
+            </form>
+            <Seprator />
+            <p>{product.description}</p>
+          </Card>
+          <h3>دیدگاه کاربران</h3>
+          <Card className='l'>
+            {product.reviews.length === 0 && <span>دیدگاهی ثبت نشده است</span>}
+            {product.reviews.map((review) => (
+              <div key={review._id}>
+                <strong>{review.name}</strong>
+                <Rating value={review.rating} />
+                <h5>
+                  {new Date(review.createdAt).toLocaleTimeString('fa-IR')}
+                  {' , '}
+                  {new Date(review.createdAt).toLocaleDateString('fa-IR')}
+                </h5>
+                <p>{review.comment}</p>
+              </div>
+            ))}
+          </Card>
+          <h3>دیدگاه خود را ثبت کنید</h3>
+          <Card className='l'>
+            {userInfo ? (
+              <form>
+                <label htmlFor='rating' className={classes.label}>
+                  امتیاز محصول :{' '}
+                </label>
+                <select
+                  id='rating'
+                  type='select'
+                  className={`${classes['product-number-input']}}`}
+                  value={rating}
+                  onChange={(e) => setRating(e.target.value)}
+                >
+                  <option value=''>انتخاب کنید</option>
+                  <option value='1'>1</option>
+                  <option value='2'>2</option>
+                  <option value='3'>3</option>
+                  <option value='4'>4</option>
+                  <option value='5'>5</option>
+                </select>
+                <div>
+                  <label htmlFor='comment' className={classes.label}>
+                    نظر خود را وارد کنید :
+                  </label>
+                  <textarea
+                    name='comment'
+                    id='comment'
+                    cols='45'
+                    rows='8'
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                    className={classes.textarea}
+                  ></textarea>
                 </div>
-              ))}
-            </div>
-          )}
-          <Row>
-            <h1 className={classes.price}>{` ${persianPrice}  تومان `}</h1>
-            <h5 className={classes['product-stock']}>
-              {productStock < 1
-                ? 'ناموجود'
-                : productStock < 6
-                ? `فقط ${productStock} عدد باقی مانده `
-                : 'موجود در انبار'}
-            </h5>
-          </Row>
-          <form className={classes['add-cart-form']}>
-            <div className={classes.inputs}>
-              <button
-                className={`${classes['product-count-inc']} ${
-                  disable && classes.disabled
-                }`}
-                onClick={increaseQty}
-              >
-                +
-              </button>
-              <input
-                type='nubmer'
-                className={`${classes['product-number-input']} ${
-                  disable && classes.disabled
-                }`}
-                value={product.countInStock === 0 ? 0 : qty}
-                onChange={qtyHandler}
-              />
-              <button
-                className={`${classes['product-count-dec']} ${
-                  disable && classes.disabled
-                }`}
-                onClick={decreaseQty}
-              >
-                -
-              </button>
-            </div>
-            <button
-              className={`${classes['add-to-card']} ${
-                disable && classes.disabled
-              }`}
-              onClick={addToCartHandler}
-              disabled={disable ? true : false}
-            >
-              {disable ? 'موجود شد اطلاع بده' : 'افزودن به سبد خرید'}
-            </button>
-          </form>
-          <Seprator />
-          <p>{product.description}</p>
-        </Card>
+                <button className={classes['btn-review']}>ثبت دیدگاه</button>
+              </form>
+            ) : (
+              <Message>
+                برای ثبت دیدگاه لطفا <Link to='/login'>وارد</Link> شوید
+              </Message>
+            )}
+          </Card>
+        </>
       )}
     </>
   );
