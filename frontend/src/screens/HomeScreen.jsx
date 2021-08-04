@@ -7,6 +7,7 @@ import Seprator from '../components/UI/Seprator';
 import classes from './HomeScreen.module.css';
 import Loader from '../components/UI/Loader';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 const HomeScreen = () => {
   const dispatch = useDispatch();
 
@@ -47,6 +48,7 @@ const HomeScreen = () => {
           </Row>
         </>
       )}
+      <Footer />
     </>
   );
 };

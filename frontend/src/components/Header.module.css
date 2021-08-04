@@ -69,20 +69,6 @@ header {
     outline: none;
 }
 
-.product-number-in-bag {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    border: 1px solid red;
-    background: red;
-    color: white;
-    text-align: center;
-    align-items: center;
-    position: relative;
-    top: -38px;
-    left: -18px;
-}
-
 .dropdown {
     /* margin-top: 40px; */
     padding-top: 80px;

@@ -43,7 +43,6 @@ const App = () => {
           <Route path='/' component={HomeScreen} exact />
         </main>
       </section>
-      <Footer />
     </Router>
   );
 };
