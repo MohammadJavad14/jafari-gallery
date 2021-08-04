@@ -18,6 +18,7 @@ import {
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const ProductScrenn = ({ history, match }) => {
   const [qty, setQty] = useState(1);
@@ -232,6 +233,7 @@ const ProductScrenn = ({ history, match }) => {
           </Card>
         </>
       )}
+      <Footer />
     </>
   );
 };

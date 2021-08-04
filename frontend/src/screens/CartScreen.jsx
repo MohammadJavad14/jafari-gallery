@@ -8,6 +8,7 @@ import classes from './CartScreen.module.css';
 import Message from '../components/UI/Message';
 import Seprator from '../components/UI/Seprator';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const CartScreen = ({ match, location, history }) => {
   const productId = match.params.id;
@@ -136,6 +137,7 @@ const CartScreen = ({ match, location, history }) => {
           ادامه فرآیند خرید
         </button>
       </div>
+      <Footer />
     </>
   );
 };

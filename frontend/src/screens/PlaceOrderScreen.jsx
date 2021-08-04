@@ -10,6 +10,7 @@ import Seprator from '../components/UI/Seprator';
 import { createOrder, payOrder } from '../actions/orderActions';
 import Loader from '../components/UI/Loader';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const PlaceOrderScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -167,6 +168,7 @@ const PlaceOrderScreen = ({ history }) => {
           پرداخت و نهایی کردن سفارش
         </button>
       </div>
+      <Footer />
     </>
   );
 };

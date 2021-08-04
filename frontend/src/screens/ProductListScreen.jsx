@@ -14,6 +14,7 @@ import Card from '../components/UI/Card';
 
 import classes from './UserListScreen.module.css';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const ProductListScreen = ({ history, match }) => {
   const dispatch = useDispatch();
@@ -129,6 +130,7 @@ const ProductListScreen = ({ history, match }) => {
           ))}
         </>
       )}
+      <Footer />
     </>
   );
 };

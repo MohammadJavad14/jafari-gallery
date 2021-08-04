@@ -8,6 +8,7 @@ import Card from '../components/UI/Card';
 import Header from '../components/Header';
 
 import classes from './LoginScreen.module.css';
+import Footer from '../components/Footer';
 
 const LoginScreen = ({ location, history }) => {
   const [email, setEmail] = useState('');
@@ -79,6 +80,7 @@ const LoginScreen = ({ location, history }) => {
           </div>
         </Card>
       </div>
+      <Footer />
     </>
   );
 };

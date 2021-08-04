@@ -8,6 +8,7 @@ import { USER_UPDATE_RESET } from '../constants/userConstants';
 
 import classes from './RegisterScreen.module.css';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const UserEditScreen = ({ match, history }) => {
   const userId = match.params.id;
@@ -113,6 +114,7 @@ const UserEditScreen = ({ match, history }) => {
           </form>
         </Card>
       </div>
+      <Footer />
     </>
   );
 };

@@ -8,6 +8,7 @@ import Card from '../components/UI/Card';
 
 import classes from './UserListScreen.module.css';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 const UserListScreen = ({ history }) => {
   const dispatch = useDispatch();
 
@@ -86,6 +87,7 @@ const UserListScreen = ({ history }) => {
           ))}
         </>
       )}
+      <Footer />
     </>
   );
 };

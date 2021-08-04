@@ -8,6 +8,7 @@ import Card from '../components/UI/Card';
 
 import classes from './RegisterScreen.module.css';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const RegisterScreen = ({ location, history }) => {
   const [name, setName] = useState('');
@@ -114,6 +115,7 @@ const RegisterScreen = ({ location, history }) => {
           </div>
         </Card>
       </div>
+      <Footer />
     </>
   );
 };

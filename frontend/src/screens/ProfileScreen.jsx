@@ -10,6 +10,7 @@ import Card from '../components/UI/Card';
 import classes from './ProfileScreen.module.css';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const ProfileScreen = ({ location, history }) => {
   const [name, setName] = useState('');
@@ -166,6 +167,7 @@ const ProfileScreen = ({ location, history }) => {
           );
         })}
       </div>
+      <Footer />
     </>
   );
 };

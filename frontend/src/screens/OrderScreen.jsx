@@ -8,6 +8,7 @@ import Row from '../components/UI/Row';
 import { Link } from 'react-router-dom';
 import { getOrderDetails, deliverOrder } from '../actions/orderActions';
 import { ORDER_DELIVERE_RESET } from '../constants/orderConstants';
+import Footer from '../components/Footer';
 
 const OrderScreen = ({ match, history }) => {
   const orderId = match.params.id;
@@ -155,6 +156,7 @@ const OrderScreen = ({ match, history }) => {
           )}
         </div>
       </div>
+      <Footer />
     </>
   );
 };

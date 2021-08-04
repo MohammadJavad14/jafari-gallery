@@ -7,6 +7,7 @@ import Loader from '../components/UI/Loader';
 import Row from '../components/UI/Row';
 import { Link } from 'react-router-dom';
 import { getPayOrderResult } from '../actions/orderActions';
+import Footer from '../components/Footer';
 
 const OrderPayScreen = ({ match }) => {
   const orderId = match.params.id;
@@ -127,6 +128,7 @@ const OrderPayScreen = ({ match }) => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

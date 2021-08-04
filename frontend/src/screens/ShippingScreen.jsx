@@ -5,6 +5,7 @@ import classes from './RegisterScreen.module.css';
 import CheckoutSteps from '../components/CheckoutSteps';
 import { saveShippingAddress } from '../actions/cartAction';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const ShippingScreen = ({ history }) => {
   const cart = useSelector((state) => state.cart);
@@ -87,6 +88,7 @@ const ShippingScreen = ({ history }) => {
           </form>
         </Card>
       </div>
+      <Footer />
     </>
   );
 };

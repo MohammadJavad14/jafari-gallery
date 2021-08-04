@@ -9,6 +9,7 @@ import Card from '../components/UI/Card';
 import classes from './RegisterScreen.module.css';
 import { PRODUCT_UPDATE_RESET } from '../constants/productConstants';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const ProductEditScreen = ({ match, history }) => {
   const productId = match.params.id;
@@ -206,6 +207,7 @@ const ProductEditScreen = ({ match, history }) => {
           </form>
         </Card>
       </div>
+      <Footer />
     </>
   );
 };

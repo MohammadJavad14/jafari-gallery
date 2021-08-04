@@ -5,6 +5,7 @@ import classes from './PaymentScreen.module.css';
 import CheckoutSteps from '../components/CheckoutSteps';
 import { savePaymentMethod } from '../actions/cartAction';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const PaymentScreen = ({ history }) => {
   const cart = useSelector((state) => state.cart);
@@ -56,6 +57,7 @@ const PaymentScreen = ({ history }) => {
           </form>
         </Card>
       </div>
+      <Footer />
     </>
   );
 };
