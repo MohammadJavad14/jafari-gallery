@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import { getOrderDetails, deliverOrder } from '../actions/orderActions';
 import { ORDER_DELIVERE_RESET } from '../constants/orderConstants';
 import Footer from '../components/Footer';
+import Header from '../components/Header';
 
 const OrderScreen = ({ match, history }) => {
   const orderId = match.params.id;
@@ -46,6 +47,7 @@ const OrderScreen = ({ match, history }) => {
     <Message>{error}</Message>
   ) : (
     <>
+      <Header />
       <h3> سفارش {order._id}</h3>
       <div>
         <Card className='l'>

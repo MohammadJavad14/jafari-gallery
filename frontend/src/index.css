@@ -1,0 +1,33 @@
+/* html {
+    width: 100vw;
+    height: 100vh;
+} */
+
+@font-face {
+    font-family: IRANSans;
+    src: url(./resources/IRANSans\ 400.ttf);
+}
+
+* {
+    box-sizing: border-box;
+    direction: rtl;
+    font-family: IRANSans;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: auto;
+    background: #f7f5f5;
+    color: #6b6d6b;
+}
+
+i {
+    font-size: 25px;
+    color: #999e99;
+}
+
+#root {
+    /* padding: 0 0.5rem; */
+    padding-bottom: 60px;
+}

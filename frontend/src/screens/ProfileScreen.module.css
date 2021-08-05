@@ -61,10 +61,7 @@
 
 .order-summery {
     width: 100%;
-    margin: 4px;
-    margin-bottom: 8px;
-    padding: 4px 0;
-    padding-left: 12px;
+    padding: 0 12px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

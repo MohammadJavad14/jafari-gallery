@@ -8,6 +8,7 @@ import Row from '../components/UI/Row';
 import { Link } from 'react-router-dom';
 import { getPayOrderResult } from '../actions/orderActions';
 import Footer from '../components/Footer';
+import Header from '../components/Header';
 
 const OrderPayScreen = ({ match }) => {
   const orderId = match.params.id;
@@ -27,6 +28,7 @@ const OrderPayScreen = ({ match }) => {
     <Message>{error}</Message>
   ) : (
     <>
+      <Header />
       <h3> سفارش {paymentResult?._id}</h3>
       <div>
         <Card className='l'>

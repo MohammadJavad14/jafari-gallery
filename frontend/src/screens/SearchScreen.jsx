@@ -29,8 +29,8 @@ const SearchScreen = ({ match }) => {
         <Message>{error}</Message>
       ) : (
         products.map((product) => (
-          <Link to={`/product/${product._id}`}>
-            <Card className='ss' key={product.product}>
+          <Link to={`/product/${product._id}`} key={product._id}>
+            <Card className='ss'>
               <div className={classes['img-container']}>
                 <img src={product.image} alt={product.name} />
               </div>
