@@ -38,7 +38,7 @@ const HomeScreen = () => {
           <br />
           <Seprator />
           <br />
-          <h5 className={classes.title}>محصولات پیشنهادی گالری حعفری</h5>
+          <h5 className={classes.title}>محصولات پیشنهادی گالری جعفری</h5>
           <Row>
             {products.map((product) => (
               <div key={product._id}>
