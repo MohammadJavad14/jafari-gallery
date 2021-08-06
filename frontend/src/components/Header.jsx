@@ -32,7 +32,7 @@ const Header = () => {
     <header>
       <nav className={classes['main-nav']}>
         <div className={classes['menu']}>
-          <Link to='/'>
+          <Link to='/' className={classes.brand}>
             <h3 className={classes.brand}>گالری جعفری</h3>
           </Link>
           {dropdownHandler && userInfo ? (

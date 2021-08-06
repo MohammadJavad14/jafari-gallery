@@ -35,6 +35,12 @@ header {
   background: inherit;
 }
 
+.brand {
+  margin: 0;
+  padding: 0;
+  padding-bottom: 6px;
+}
+
 /* .menu-icon,
 .shopping-bag,
 .search-icon {
@@ -78,7 +84,7 @@ header {
 .dropdown-btn {
   display: flex;
   align-items: center;
-  margin-top: -70px;
+  margin-top: -65px;
   border: none;
   background: inherit;
 }
