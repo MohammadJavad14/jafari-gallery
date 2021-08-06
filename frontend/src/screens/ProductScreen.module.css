@@ -41,7 +41,7 @@
 }
 
 .price {
-  margin: 2px 12px 8px 12px;
+  margin: 4px 8px;
   font-family: 'Markazi Text', serif;
   font-weight: bold;
   color: #ee4949;
@@ -49,7 +49,7 @@
 }
 
 .product-stock {
-  margin-bottom: 6px;
+  margin: 12px;
   color: #ee4949;
   font-weight: lighter;
 }
@@ -59,8 +59,8 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  margin: 8px 4px;
-  margin-bottom: 16px;
+  margin: 24px 8px;
+  /* margin-bottom: 16px; */
   text-align: center;
 }
 
