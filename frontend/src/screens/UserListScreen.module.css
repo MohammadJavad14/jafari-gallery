@@ -1,66 +1,63 @@
 .order-summery {
-    width: 100%;
-    margin: 4px;
-    margin-bottom: 8px;
-    padding: 4px 0;
-    padding-left: 12px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+  width: 100%;
+  padding: 0 12px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .summery-price {
-    margin: 0;
-    font-family: 'Markazi Text', serif;
-    font-weight: bold;
-    color: #ee4949;
-    padding-left: 0;
+  margin: 0;
+  font-family: 'Markazi Text', serif;
+  font-weight: bold;
+  color: #ee4949;
+  padding-left: 0;
 }
 
 .btn-delete {
-    margin: 8px;
-    padding: 8px;
-    color: #fff;
-    background: #da1432;
-    border: 1px solid #da1432;
-    border-radius: 8px;
-    width: 45%;
+  margin: 8px;
+  padding: 8px;
+  color: #fff;
+  background: #da1432;
+  border: 1px solid #da1432;
+  border-radius: 8px;
+  width: 45%;
 }
 
 .btn-edit {
-    margin: 8px;
-    padding: 8px;
-    color: #fff;
-    background: #25da14;
-    border: 1px solid #25da14;
-    border-radius: 8px;
-    width: 45%;
+  margin: 8px;
+  padding: 8px;
+  color: #fff;
+  background: #25da14;
+  border: 1px solid #25da14;
+  border-radius: 8px;
+  width: 45%;
 }
 
 .btn-add {
-    margin: 8px;
-    padding: 8px;
-    color: #fff;
-    background: #25da14;
-    border: 1px solid #25da14;
-    border-radius: 8px;
-    width: auto;
-    display: flex;
-    align-items: center;
+  margin: 8px;
+  padding: 8px;
+  color: #fff;
+  background: #25da14;
+  border: 1px solid #25da14;
+  border-radius: 8px;
+  width: auto;
+  display: flex;
+  align-items: center;
 }
 
 .title {
-    margin: 0 8px;
-    padding-bottom: 4px;
+  margin: 0 8px;
+  padding-bottom: 4px;
 }
 
 .btn-details {
-    margin: 4px 0;
-    padding: 8px;
-    color: #fff;
-    background: #25da14;
-    border: 1px solid #25da14;
-    border-radius: 8px;
-    width: 100%;
+  margin: 4px 0;
+  padding: 8px;
+  color: #fff;
+  background: #25da14;
+  border: 1px solid #25da14;
+  border-radius: 8px;
+  width: 100%;
 }
