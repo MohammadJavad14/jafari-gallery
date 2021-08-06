@@ -1,59 +1,61 @@
 .form-container {
-    position: relative;
-    top: 120px;
+  width: 100vw;
+  height: 85vh;
+  display: flex;
+  align-items: center;
 }
 
 .form-title {
-    margin: 8px;
+  margin: 8px;
 }
 
 .form {
-    display: flex;
-    flex-direction: column;
-    margin: 8px;
-    padding: 4px;
+  display: flex;
+  flex-direction: column;
+  margin: 8px;
+  padding: 4px;
 }
 
 .input-container {
-    border: 1px solid #ccc;
-    display: flex;
-    align-items: center;
-    margin: 8px 0;
-    padding: 0 8px;
-    border-radius: 8px;
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+  padding: 0 8px;
+  border-radius: 8px;
 }
 
 .login-icons {
-    font-size: larger;
+  font-size: larger;
 }
 
 .input {
-    margin: 8px 0;
-    padding: 8px;
-    border: none;
-    width: 100%;
+  margin: 8px 0;
+  padding: 8px;
+  border: none;
+  width: 100%;
 }
 
 .btn-submit {
-    margin: 8px 0;
-    padding: 8px;
-    color: #fff;
-    background: #da1432;
-    border: 1px solid #da1432;
-    border-radius: 8px;
+  margin: 8px 0;
+  padding: 8px;
+  color: #fff;
+  background: #da1432;
+  border: 1px solid #da1432;
+  border-radius: 8px;
 }
 
 .register {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin: 0 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 8px;
 }
 
 .register-text {
-    margin-left: 12px;
+  margin-left: 12px;
 }
 
 .register-link {
-    color: #da1432;
+  color: #da1432;
 }
