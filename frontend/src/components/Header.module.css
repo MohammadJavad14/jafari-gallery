@@ -110,7 +110,7 @@ header {
     height: 100%;
     width: 70%;
     transform: translateX(-100vw);
-    transition: 1s transform;
+    transition: 0.5s transform;
 }
 
 .dropdown-content button {
@@ -122,7 +122,7 @@ header {
 
 .dropdown-content-visible {
     transform: translateX(0vw);
-    transition: 1.5s transform;
+    transition: 0.75s transform;
 }
 
 .overlay {
@@ -135,10 +135,10 @@ header {
     left: 0;
     background: rgba(0, 0, 0, 0.5);
     transform: translateX(-100vw);
-    transition: 1s transform;
+    transition: 0.5s transform;
 }
 
 .overlay.overlay-visible {
     transform: translateX(0vw);
-    transition: 1.5s transform;
+    transition: 0.75s transform;
 }
