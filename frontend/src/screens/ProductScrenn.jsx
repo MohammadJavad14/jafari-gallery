@@ -209,7 +209,7 @@ const ProductScrenn = ({ history, match }) => {
                   <option value='4'>4</option>
                   <option value='5'>5</option>
                 </select>
-                <div>
+                <div className={classes['textarea-container']}>
                   <label htmlFor='comment' className={classes.label}>
                     نظر خود را وارد کنید :
                   </label>
