@@ -122,11 +122,13 @@ header {
 
 .dropdown-content-visible {
     transform: translateX(0vw);
-    transition: 0.75s transform;
+    transition: 0.5s transform;
 }
 
 .overlay {
     display: block;
+    opacity: 0;
+    transition: 0.5s opacity;
     width: 100vw;
     height: 100vh;
     position: fixed;
@@ -134,11 +136,10 @@ header {
     top: 0;
     left: 0;
     background: rgba(0, 0, 0, 0.5);
-    transform: translateX(-100vw);
     transition: 0.5s transform;
 }
 
 .overlay.overlay-visible {
-    transform: translateX(0vw);
-    transition: 0.75s transform;
+    opacity: 1;
+    transition: 0.5s opacity;
 }
