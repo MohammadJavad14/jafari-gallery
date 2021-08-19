@@ -1,33 +1,16 @@
-/* html {
-    width: 100vw;
-    height: 100vh;
-} */
-
-@font-face {
-    font-family: IRANSans;
-    src: url(./resources/IRANSans\ 400.ttf);
-}
-
 * {
-    box-sizing: border-box;
     direction: rtl;
-    font-family: IRANSans;
 }
 
 body {
-    width: 100vw;
-    height: 100vh;
-    margin: auto;
-    background: #f7f5f5;
-    color: #6b6d6b;
+    margin: 0;
+    padding-bottom: 4rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
 }
 
-i {
-    font-size: 25px;
-    color: #999e99;
-}
-
-#root {
-    /* padding: 0 0.5rem; */
-    padding-bottom: 60px;
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
