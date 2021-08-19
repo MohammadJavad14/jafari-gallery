@@ -2,8 +2,8 @@ import React from 'react';
 import { createTheme, CssBaseline, ThemeProvider } from '@material-ui/core';
 import { BrowserRouter, Route } from 'react-router-dom';
 import HomeScreen from './screens/HomeScreen';
+import ProductScreen from './screens/ProductScreen';
 import IranYekan from './fonts/iranyekanwebregular.woff';
-import FooterMobile from './components/UI/FooterMobile';
 
 const iranyekan = {
   fontFamily: 'IranYekan',
@@ -33,8 +33,8 @@ const App = () => (
     <CssBaseline />
     <BrowserRouter>
       <Route path="/" component={HomeScreen} exact />
+      <Route path="/product/:id" component={ProductScreen} exact />
     </BrowserRouter>
-    <FooterMobile />
   </ThemeProvider>
 );
 

@@ -17,6 +17,7 @@ import coin from '../styles/coin.png';
 import stamp from '../styles/stamp.png';
 import cash from '../styles/cash.png';
 import album from '../styles/album.png';
+import FooterMobile from '../components/UI/FooterMobile';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -194,6 +195,7 @@ const HomeScreen = () => {
           </Grid>
         </>
       )}
+      <FooterMobile />
     </>
   );
 };

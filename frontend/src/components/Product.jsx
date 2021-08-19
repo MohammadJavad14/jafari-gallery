@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
@@ -9,6 +10,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import GradeIcon from '@material-ui/icons/Grade';
+import { Link } from 'react-router-dom';
 import ProductStyles from '../styles/ProductStyles';
 
 // eslint-disable-next-line no-unused-vars
@@ -24,6 +26,8 @@ const Product = ({ product }) => {
             image={product.image}
             title="classor1"
             className={classes.media}
+            component={Link}
+            to={`/product/${product._id}`}
           />
           <IconButton classes={{ root: classes.favoriteIcon }}>
             <FavoriteBorderIcon />
