@@ -6,6 +6,8 @@ const HomeScreenStyles = makeStyles(() => ({
         height: '25rem',
         position: 'absolute',
         overflow: 'hidden',
+        '-ms-overflow-style': 'none' /* IE and Edge */ ,
+        'scrollbar-width': 'none' /* Firefox */ ,
     },
     background: {
         width: '49rem',
@@ -44,7 +46,13 @@ const HomeScreenStyles = makeStyles(() => ({
         flexWrap: 'nowrap',
         position: 'relative',
         zIndex: 1,
+        '-ms-overflow-style': 'none' /* IE and Edge */ ,
+        'scrollbar-width': 'none' /* Firefox */ ,
+        '&::-webkit-scrollbar': {
+            display: 'none',
+        },
     },
+
     popularContainer: {
         padding: '0 1rem',
     },
@@ -59,6 +67,11 @@ const HomeScreenStyles = makeStyles(() => ({
         borderRadius: '0.75rem',
         overflow: 'scroll',
         position: 'relative',
+        '-ms-overflow-style': 'none' /* IE and Edge */ ,
+        'scrollbar-width': 'none' /* Firefox */ ,
+        '&::-webkit-scrollbar': {
+            display: 'none',
+        },
     },
     cardContent: {
         '&:last-child': {

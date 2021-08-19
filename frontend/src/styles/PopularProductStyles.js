@@ -9,6 +9,11 @@ const PopularProductStyles = makeStyles(() => ({
         flexWrap: 'nowrap',
         position: 'relative',
         zIndex: 1,
+        '-ms-overflow-style': 'none' /* IE and Edge */ ,
+        'scrollbar-width': 'none' /* Firefox */ ,
+        '&::-webkit-scrollbar': {
+            display: 'none',
+        },
     },
 
     card: {
@@ -21,6 +26,11 @@ const PopularProductStyles = makeStyles(() => ({
         borderRadius: '0.75rem',
         overflow: 'scroll',
         position: 'relative',
+        '-ms-overflow-style': 'none' /* IE and Edge */ ,
+        'scrollbar-width': 'none' /* Firefox */ ,
+        '&::-webkit-scrollbar': {
+            display: 'none',
+        },
     },
     cardContent: {
         '&:last-child': {
