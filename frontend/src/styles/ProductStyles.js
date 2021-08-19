@@ -1,6 +1,12 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const HomeScreenStyles = makeStyles(() => ({
+    media: {
+        height: '10rem',
+        backgroundColor: '#F8F7FA',
+        backgroundSize: '8.75rem',
+        backgroundPosition: 'center',
+    },
     backgroundContainer: {
         width: '100vw',
         height: '25rem',

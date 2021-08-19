@@ -9,12 +9,12 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import GradeIcon from '@material-ui/icons/Grade';
-import HomeScreenStyles from '../styles/HomeScreenStyles';
+import ProductStyles from '../styles/ProductStyles';
 
 // eslint-disable-next-line no-unused-vars
 // eslint-disable-next-line react/prop-types
 const Product = ({ product }) => {
-  const classes = HomeScreenStyles();
+  const classes = ProductStyles();
 
   return (
     <>
