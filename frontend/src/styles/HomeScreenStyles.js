@@ -75,9 +75,9 @@ const HomeScreenStyles = makeStyles(() => ({
     },
 
     media: {
-        height: 160,
+        height: '10rem',
         backgroundColor: '#F8F7FA',
-        backgroundSize: 140,
+        backgroundSize: '8.75rem',
         backgroundPosition: 'center',
     },
     price: {
