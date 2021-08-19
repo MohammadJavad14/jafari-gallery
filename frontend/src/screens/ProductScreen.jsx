@@ -49,7 +49,7 @@ const ProductScreen = ({ match }) => {
         {product.name}
       </Typography>
       <Typography className={classes.productBrand}>{product.brand}</Typography>
-      <Rating value="3.5" className={classes.ratingContainer} />
+      <Rating value="2.5" className={classes.ratingContainer} />
     </>
   );
 };
