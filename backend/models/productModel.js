@@ -27,6 +27,10 @@ const productSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    sliderImages: [{
+        type: String,
+        required: true,
+    }, ],
     color: [{
         colorName: { type: String, required: true },
         colorValue: { type: String, required: true },

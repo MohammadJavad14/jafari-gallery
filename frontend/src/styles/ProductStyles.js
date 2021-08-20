@@ -80,6 +80,7 @@ const HomeScreenStyles = makeStyles(() => ({
         '&::-webkit-scrollbar': {
             display: 'none',
         },
+        textDecoration: 'none',
     },
     cardContent: {
         '&:last-child': {
@@ -131,18 +132,21 @@ const HomeScreenStyles = makeStyles(() => ({
         fontSize: '0.75rem',
         fontWeight: 800,
         marginRight: '0.5rem',
+        textDecoration: 'none',
+        color: '#3A3A3A',
     },
     addToCart: {
         padding: 0,
         width: '5rem',
         height: '1.25rem',
         background: '#ECF6FF',
-        marginRight: '3rem',
+        marginRight: '2rem',
         borderRadius: '6.25rem',
     },
     addToCartTxt: {
         color: '#5FA1D5',
         paddingBottom: '0.1rem',
+        textDecoration: 'none',
     },
     categoriesContainer: {
         width: '100%',

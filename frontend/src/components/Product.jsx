@@ -21,15 +21,22 @@ const Product = ({ product }) => {
   return (
     <>
       <Grid item>
-        <Card className={classes.card} elevation={3}>
+        <Card
+          className={classes.card}
+          elevation={3}
+          component={Link}
+          to={`/product/${product._id}`}
+        >
           <CardMedia
             image={product.image}
             title="classor1"
             className={classes.media}
-            component={Link}
-            to={`/product/${product._id}`}
           />
-          <IconButton classes={{ root: classes.favoriteIcon }}>
+          <IconButton
+            classes={{ root: classes.favoriteIcon }}
+            component={Link}
+            to="/"
+          >
             <FavoriteBorderIcon />
           </IconButton>
           <CardContent classes={{ root: classes.cardContent }}>
@@ -74,7 +81,11 @@ const Product = ({ product }) => {
                   </Typography>
                 </Grid>
                 <Grid item>
-                  <Typography className={classes.category}>
+                  <Typography
+                    className={classes.category}
+                    component={Link}
+                    to="/"
+                  >
                     دسته بندی
                   </Typography>
                 </Grid>
@@ -89,6 +100,8 @@ const Product = ({ product }) => {
                       classes={{
                         root: classes.addToCartTxt,
                       }}
+                      component={Link}
+                      to="/"
                     >
                       خرید
                     </Typography>

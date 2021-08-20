@@ -1,6 +1,11 @@
 const products = [{
         name: 'کلاسور نگهداری اسکناس',
         image: '/images/classor/classor1.png',
+        sliderImages: [
+            '/images/classor/classor2.png',
+            '/images/classor/classor3.png',
+            '/images/classor/classor4.png',
+        ],
         description: 'کلاسور نگهداری اسکناس سایز متوسط به همراه کاست و 20 عدد ورق با کیفیت بسیار عالی',
         brand: 'جعفری',
         category: 'کلاسور نگهدارنده',
@@ -16,6 +21,7 @@ const products = [{
     {
         name: 'ورق آلبوم نگهداری اسکناس',
         image: '/images/album-paper/album-paper1.png',
+        sliderImages: ['/images/album-paper/album-paper2.png'],
         description: 'ورق آلبوم نگهداری اسکناس سایز متوسط با کیفیت بسیار عالی(مشابه لیندز)',
 
         brand: 'جعفری',
@@ -28,6 +34,10 @@ const products = [{
     {
         name: 'کتاب مصور اسکناس',
         image: '/images/money-book/money-book1.png',
+        sliderImages: [
+            '/images/money-book/money-book2.png',
+            '/images/money-book/money-book3.png',
+        ],
         description: 'کتاب نفیس تاریخ مصور اسکناس از قاجار تا جمهوری اسلامی  کیفیت بسیار عالی(گلاسه رنگی)',
         brand: 'جعفری',
         category: 'کتاب',
@@ -39,6 +49,10 @@ const products = [{
     {
         name: 'آلبوم سکه ۱۴۴ عددی',
         image: '/images/coin-album/coin-album1.png',
+        sliderImages: [
+            '/images/coin-album/coin-album2.png',
+            '/images/coin-album/coin-album3.png',
+        ],
         description: 'آلبوم سکه ۱۴۴ عددی با طراحی زیبا و جدید  در 4 رنگ عسلی، مشکی، زرشکی و قهوه ای سوخته',
         brand: 'جعفری',
         category: 'آلبوم سکه',
@@ -50,6 +64,10 @@ const products = [{
     {
         name: 'آلبوم سکه ۶۴ عددی',
         image: '/images/coin-album/coin-album2.png',
+        sliderImages: [
+            '/images/coin-album/coin-album1.png',
+            '/images/coin-album/coin-album3.png',
+        ],
         description: 'آلبوم سکه ۶۴ عددی با طراحی زیبا و جدید  در 4 رنگ عسلی، مشکی، زرشکی و قهوه ای سوخته',
         brand: 'جعفری',
         category: 'آلبوم سکه',
@@ -62,6 +80,10 @@ const products = [{
     {
         name: 'آلبوم سکه ۱۴۴ عددی',
         image: '/images/coin-album/coin-album1.png',
+        sliderImages: [
+            '/images/coin-album/coin-album2.png',
+            '/images/coin-album/coin-album3.png',
+        ],
         description: 'آلبوم سکه ۱۴۴ عددی با طراحی زیبا و جدید  در 4 رنگ عسلی، مشکی، زرشکی و قهوه ای سوخته',
         brand: 'جعفری',
         category: 'آلبوم سکه',
@@ -71,14 +93,18 @@ const products = [{
         numReviews: 12,
     },
     {
-        name: 'آلبوم سکه ۶۴ عددی',
-        image: '/images/coin-album/coin-album2.png',
-        description: 'آلبوم سکه ۶۴ عددی با طراحی زیبا و جدید  در 4 رنگ عسلی، مشکی، زرشکی و قهوه ای سوخته',
+        name: 'کتاب مصور اسکناس',
+        image: '/images/money-book/money-book1.png',
+        sliderImages: [
+            '/images/money-book/money-book2.png',
+            '/images/money-book/money-book3.png',
+        ],
+        description: 'کتاب نفیس تاریخ مصور اسکناس از قاجار تا جمهوری اسلامی  کیفیت بسیار عالی(گلاسه رنگی)',
         brand: 'جعفری',
-        category: 'آلبوم سکه',
-        price: 40000,
-        countInStock: 11,
-        rating: 5,
+        category: 'کتاب',
+        price: 150000,
+        countInStock: 5,
+        rating: 3,
         numReviews: 12,
     },
 ];

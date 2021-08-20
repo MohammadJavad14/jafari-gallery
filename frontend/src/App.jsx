@@ -18,6 +18,9 @@ const theme = createTheme({
     primary: {
       main: '#000',
     },
+    background: {
+      default: '#fff',
+    },
   },
   overrides: {
     MuiCssBaseline: {

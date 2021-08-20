@@ -2,7 +2,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import GradeIcon from '@material-ui/icons/Grade';
 import StarOutlineOutlinedIcon from '@material-ui/icons/StarOutlineOutlined';
 import StarHalfOutlinedIcon from '@material-ui/icons/StarHalfOutlined';

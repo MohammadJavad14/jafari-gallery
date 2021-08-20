@@ -4,8 +4,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
 import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Typography from '@material-ui/core/Typography';
@@ -15,6 +15,7 @@ import { listProductDetails } from '../actions/productAcions';
 import Rating from '../components/Rating';
 import Review from '../components/Review';
 import ProductScreenStyles from '../styles/ProductScreenStyles';
+import SwiperSlider from '../components/SwiperSlider';
 
 const ProductScreen = ({ match }) => {
   const dispatch = useDispatch();
@@ -43,11 +44,11 @@ const ProductScreen = ({ match }) => {
       ) : (
         <>
           <Card className={classes.card} elevation={0}>
-            <CardMedia
-              image={product.image}
-              title={product.name}
-              className={classes.media}
+            <SwiperSlider
+              sliderImages={product.sliderImages}
+              product={product}
             />
+
             <IconButton
               classes={{ root: classes.leftArrowIcon }}
               component={Link}
@@ -84,6 +85,38 @@ const ProductScreen = ({ match }) => {
             </Typography>
             <Review reviews={product.reviews} />
           </div>
+          <Grid
+            container
+            alignItems="center"
+            justifyContent="space-around"
+            className={classes.footer}
+          >
+            <Grid item>
+              <Button variant="contained" className={classes.addToCardBtn}>
+                <Grid
+                  container
+                  alignItems="center"
+                  justifyContent="space-around"
+                >
+                  <Grid item>
+                    <Typography className={classes.addToCartTxt}>
+                      افزودن به سبد خرید
+                    </Typography>
+                  </Grid>
+                  <Grid item>
+                    <Typography
+                      className={classes.price}
+                    >{`${product.price?.toLocaleString('fa-IR')} `}</Typography>
+                  </Grid>
+                </Grid>
+              </Button>
+            </Grid>
+            <Grid item>
+              <IconButton className={classes.addToFavoriteBtn}>
+                <FavoriteBorderIcon />
+              </IconButton>
+            </Grid>
+          </Grid>
         </>
       )}
     </>

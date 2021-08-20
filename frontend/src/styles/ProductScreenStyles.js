@@ -85,6 +85,8 @@ const ProductScreenStyles = makeStyles(() => ({
 
     favoriteIcon: {
         position: 'absolute',
+        zIndex: 2,
+
         top: '1rem',
         right: '1rem',
     },
@@ -106,7 +108,7 @@ const ProductScreenStyles = makeStyles(() => ({
 
     price: {
         fontWeight: 'bold',
-        fontSize: '1rem',
+        fontSize: '0.875rem',
     },
     oldPrice: {
         fontSize: '0.75rem',
@@ -160,8 +162,7 @@ const ProductScreenStyles = makeStyles(() => ({
         borderRadius: '6.25rem',
     },
     addToCartTxt: {
-        color: '#5FA1D5',
-        paddingBottom: '0.1rem',
+        fontWeight: 700,
     },
     categoriesContainer: {
         width: '100%',
@@ -183,6 +184,38 @@ const ProductScreenStyles = makeStyles(() => ({
 
     categoriesName: {
         color: '#fff',
+    },
+    footer: {
+        width: '100%',
+        height: '6rem',
+        borderTop: '1px solid #F8F7FA',
+        backgroundColor: '#fff',
+        position: 'fixed',
+        bottom: 0,
+    },
+    addToCardBtn: {
+        width: '16.4375rem',
+        height: '3rem',
+        backgroundColor: '#FFE202',
+        borderRadius: '1rem',
+        boxShadow: '0 5px 15px rgba(0,0,0,0.1)',
+        fontSize: '1rem',
+        fontWeight: 500,
+        '&:hover': {
+            backgroundColor: '#FFE202',
+            boxShadow: '0 5px 15px rgba(0,0,0,0.1)',
+        },
+    },
+    addToFavoriteBtn: {
+        width: '3rem',
+        height: '3rem',
+        backgroundColor: '#FFF',
+        borderRadius: '1rem',
+        boxShadow: '0 5px 15px rgba(0,0,0,0.1)',
+        '&:hover': {
+            backgroundColor: '#FFF',
+            boxShadow: '0 5px 15px rgba(0,0,0,0.1)',
+        },
     },
 }));
 
