@@ -34,7 +34,7 @@ const Product = ({ product }) => {
           </IconButton>
           <CardContent classes={{ root: classes.cardContent }}>
             <Typography variant="h6">{product.name}</Typography>
-            <Grid container alignItems="center">
+            <Grid container justifyContent="space-around" alignItems="center">
               <Grid item xs={5}>
                 <Typography variant="h6" classes={{ root: classes.price }}>
                   {`${product.price.toLocaleString('fa-IR')} تومان`}
@@ -57,6 +57,7 @@ const Product = ({ product }) => {
                 item
                 container
                 alignItems="center"
+                justifyContent="space-around"
                 style={{ marginBottom: '1rem' }}
               >
                 <Grid item>
@@ -68,7 +69,8 @@ const Product = ({ product }) => {
                 </Grid>
                 <Grid item>
                   <Typography className={classes.rateNumber}>
-                    <strong>۵</strong> (۳۴)
+                    <strong>{product.rating.toLocaleString('fa-IR')}</strong> (
+                    {product.numReviews.toLocaleString('fa-IR')})
                   </Typography>
                 </Grid>
                 <Grid item>

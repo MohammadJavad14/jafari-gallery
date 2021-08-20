@@ -1,17 +1,19 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Typography from '@material-ui/core/Typography';
-import GradeIcon from '@material-ui/icons/Grade';
-import StarOutlineOutlinedIcon from '@material-ui/icons/StarOutlineOutlined';
+
 import { Link } from 'react-router-dom';
 import { listProductDetails } from '../actions/productAcions';
 import Rating from '../components/Rating';
+import Review from '../components/Review';
 import ProductScreenStyles from '../styles/ProductScreenStyles';
 
 const ProductScreen = ({ match }) => {
@@ -28,28 +30,62 @@ const ProductScreen = ({ match }) => {
 
   return (
     <>
-      <Card className={classes.card} elevation={0}>
-        <CardMedia
-          image={product.image}
-          title={product.name}
-          className={classes.media}
-        />
-        <IconButton
-          classes={{ root: classes.leftArrowIcon }}
-          component={Link}
-          to="/"
-        >
-          <ArrowBackIosIcon />
-        </IconButton>
-        <IconButton classes={{ root: classes.favoriteIcon }}>
-          <FavoriteBorderIcon />
-        </IconButton>
-      </Card>
-      <Typography variant="h5" className={classes.productName}>
-        {product.name}
-      </Typography>
-      <Typography className={classes.productBrand}>{product.brand}</Typography>
-      <Rating value="2.5" className={classes.ratingContainer} />
+      {loading ? (
+        <Grid container alignItems="center" justifyContent="space-between">
+          <Grid item>
+            <Typography variant="h4" className={classes.mainTitle}>
+              در حال دریافت اطلاعات.....
+            </Typography>
+          </Grid>
+        </Grid>
+      ) : error ? (
+        <h3>{error.message}</h3>
+      ) : (
+        <>
+          <Card className={classes.card} elevation={0}>
+            <CardMedia
+              image={product.image}
+              title={product.name}
+              className={classes.media}
+            />
+            <IconButton
+              classes={{ root: classes.leftArrowIcon }}
+              component={Link}
+              to="/"
+            >
+              <ArrowBackIosIcon />
+            </IconButton>
+            <IconButton classes={{ root: classes.favoriteIcon }}>
+              <FavoriteBorderIcon />
+            </IconButton>
+          </Card>
+          <div style={{ padding: '1.5rem' }}>
+            <Typography variant="h5" className={classes.productName}>
+              {product.name}
+            </Typography>
+            <Typography className={classes.productBrand}>
+              {product.brand}
+            </Typography>
+            <Grid container alignItems="center">
+              <Rating value={product.rating} rateNumber={product.numReviews} />
+              <Grid item>
+                <Typography className={classes.rateNumber}>
+                  <strong>{product.rating?.toLocaleString('fa-IR')}</strong> (
+                  {`از ${product.numReviews?.toLocaleString('fa-IR')} نظر`})
+                </Typography>
+              </Grid>
+            </Grid>
+
+            <Typography variant="h6" className={classes.productDescription}>
+              توضیحات
+            </Typography>
+            <Typography className={classes.description}>
+              {product.description}
+            </Typography>
+            <Review reviews={product.reviews} />
+          </div>
+        </>
+      )}
     </>
   );
 };

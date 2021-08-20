@@ -137,7 +137,7 @@ const HomeScreenStyles = makeStyles(() => ({
         width: '5rem',
         height: '1.25rem',
         background: '#ECF6FF',
-        marginRight: '3.3rem',
+        marginRight: '3rem',
         borderRadius: '6.25rem',
     },
     addToCartTxt: {

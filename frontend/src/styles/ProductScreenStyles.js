@@ -85,29 +85,23 @@ const ProductScreenStyles = makeStyles(() => ({
 
     favoriteIcon: {
         position: 'absolute',
-        top: '2rem',
-        right: '1.5rem',
+        top: '1rem',
+        right: '1rem',
     },
     leftArrowIcon: {
         position: 'absolute',
         zIndex: 2,
-        top: '2rem',
-        left: '1.5rem',
+        top: '1rem',
+        left: '1rem',
     },
 
     productName: {
-        margin: '1.5rem',
         marginBottom: 0,
         fontWeight: 700,
     },
     productBrand: {
         fontSize: '1rem',
         color: '#A6A6AA',
-        marginRight: '1.5rem',
-    },
-
-    ratingContainer: {
-        marginRight: '1rem',
     },
 
     price: {
@@ -129,11 +123,16 @@ const ProductScreenStyles = makeStyles(() => ({
         borderRadius: '6.25rem',
         marginRight: '0.15rem',
     },
+    productDescription: {
+        marginTop: '2rem',
+        fontSize: '1rem',
+        fontWeight: 800,
+    },
     description: {
-        fontSize: '0.75rem',
+        fontSize: '1rem',
         fontWeight: 400,
-        color: '#A6A6AA',
-        marginTop: '0.25rem',
+        color: '#3A3A3A',
+        marginTop: '1rem',
     },
     gradIcon: {
         marginTop: '0.2rem',
@@ -145,6 +144,7 @@ const ProductScreenStyles = makeStyles(() => ({
     },
     rateNumber: {
         fontSize: '0.75rem',
+        marginRight: '0.5rem',
     },
     category: {
         fontSize: '0.75rem',
