@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
@@ -11,19 +12,26 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Typography from '@material-ui/core/Typography';
 
 import { Link } from 'react-router-dom';
-import { listProductDetails } from '../actions/productAcions';
+import { listProduct, listProductDetails } from '../actions/productAcions';
 import Rating from '../components/Rating';
 import Review from '../components/Review';
+import Product from '../components/Product';
+import Loader from '../components/UI/Loader';
 import ProductScreenStyles from '../styles/ProductScreenStyles';
 import SwiperSlider from '../components/SwiperSlider';
 
 const ProductScreen = ({ match }) => {
   const dispatch = useDispatch();
-
+  const productList = useSelector((state) => state.productList);
+  const { loading: productListLoading, products } = productList;
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
 
   useEffect(() => {
+    // eslint-disable-next-line no-undef
+    window.scrollTo(0, 0);
+    dispatch(listProduct());
+
     dispatch(listProductDetails(match.params.id));
   }, [dispatch, match]);
 
@@ -31,22 +39,16 @@ const ProductScreen = ({ match }) => {
 
   return (
     <>
-      {loading ? (
-        <Grid container alignItems="center" justifyContent="space-between">
-          <Grid item>
-            <Typography variant="h4" className={classes.mainTitle}>
-              در حال دریافت اطلاعات.....
-            </Typography>
-          </Grid>
-        </Grid>
+      {loading || productListLoading ? (
+        <Loader />
       ) : error ? (
         <h3>{error.message}</h3>
       ) : (
         <>
           <Card className={classes.card} elevation={0}>
             <SwiperSlider
-              sliderImages={product.sliderImages}
               product={product}
+              sliderImages={product.sliderImages}
             />
 
             <IconButton
@@ -60,7 +62,7 @@ const ProductScreen = ({ match }) => {
               <FavoriteBorderIcon />
             </IconButton>
           </Card>
-          <div style={{ padding: '1.5rem' }}>
+          <div style={{ padding: '1.5rem', paddingBottom: '0' }}>
             <Typography variant="h5" className={classes.productName}>
               {product.name}
             </Typography>
@@ -85,6 +87,34 @@ const ProductScreen = ({ match }) => {
             </Typography>
             <Review reviews={product.reviews} />
           </div>
+          <Grid
+            container
+            alignItems="center"
+            justifyContent="space-between"
+            classes={{ root: classes.popularContainer }}
+          >
+            <Grid item>
+              <Typography style={{ fontWeight: 'bold' }}>
+                محصولات مرتبط
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Link
+                underline="always"
+                color="textPrimary"
+                to="/"
+                style={{ color: '#A6A6AA', fontWeight: 'bold' }}
+              >
+                مشاهده همه
+              </Link>
+            </Grid>
+          </Grid>
+          <Grid container spacing={3} className={classes.gridContaier}>
+            {products.map((currProduct) => (
+              // eslint-disable-next-line no-underscore-dangle
+              <Product key={currProduct._id} product={currProduct} />
+            ))}
+          </Grid>
           <Grid
             container
             alignItems="center"

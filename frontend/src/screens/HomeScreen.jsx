@@ -18,6 +18,7 @@ import stamp from '../styles/stamp.png';
 import cash from '../styles/cash.png';
 import album from '../styles/album.png';
 import FooterMobile from '../components/UI/FooterMobile';
+import Loader from '../components/UI/Loader';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -35,13 +36,7 @@ const HomeScreen = () => {
         <div className={classes.background} />
       </div>
       {loading ? (
-        <Grid container alignItems="center" justifyContent="space-between">
-          <Grid item>
-            <Typography variant="h4" className={classes.mainTitle}>
-              در حال دریافت اطلاعات.....
-            </Typography>
-          </Grid>
-        </Grid>
+        <Loader />
       ) : error ? (
         <h3>{error.message}</h3>
       ) : (

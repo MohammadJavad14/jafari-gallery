@@ -51,6 +51,8 @@ const ProductScreenStyles = makeStyles(() => ({
         width: '100%',
         height: '100%',
         margin: '1rem 0',
+        marginBottom: '3rem',
+        paddingRight: '0.75rem',
         overflow: 'auto',
         flexWrap: 'nowrap',
         position: 'relative',
@@ -191,6 +193,7 @@ const ProductScreenStyles = makeStyles(() => ({
         borderTop: '1px solid #F8F7FA',
         backgroundColor: '#fff',
         position: 'fixed',
+        zIndex: 5,
         bottom: 0,
     },
     addToCardBtn: {
