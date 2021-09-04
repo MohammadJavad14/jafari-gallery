@@ -91,6 +91,7 @@ const Product = ({ product }) => {
                 </Grid>
                 <Grid item>
                   <Button
+                    disableElevation
                     variant="contained"
                     classes={{
                       root: classes.addToCart,

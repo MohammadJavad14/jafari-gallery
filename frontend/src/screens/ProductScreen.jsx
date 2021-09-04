@@ -128,7 +128,12 @@ const ProductScreen = ({ match }) => {
                   alignItems="center"
                   justifyContent="space-around"
                 >
-                  <Grid item>
+                  <Grid
+                    item
+                    component={Link}
+                    to={`/addtocart/${product._id}`}
+                    style={{ textDecoration: 'none', color: 'inherit' }}
+                  >
                     <Typography className={classes.addToCartTxt}>
                       افزودن به سبد خرید
                     </Typography>

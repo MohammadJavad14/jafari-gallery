@@ -1,8 +1,8 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const ProductScreenStyles = makeStyles(() => ({
+const AddToCartScreenStyles = makeStyles((theme) => ({
     media: {
-        height: '20rem',
+        height: '25rem',
         backgroundColor: '#F8F7FA',
         backgroundSize: '14rem',
         backgroundPosition: 'center',
@@ -109,17 +109,18 @@ const ProductScreenStyles = makeStyles(() => ({
 
     price: {
         fontWeight: 'bold',
-        fontSize: '0.875rem',
+        fontSize: '1.25rem',
+        marginRight: theme.spacing(1),
     },
     oldPrice: {
         fontSize: '0.75rem',
-        color: '#CBCBD4',
+        color: '#3A3A3A',
         textDecoration: 'line-through',
-        marginRight: '0.5rem',
+        marginRight: theme.spacing(2),
     },
     offAmount: {
-        background: '#EAF8EC',
-        color: '#51B960',
+        background: '#FFF9CC',
+        color: '#3A3A3A',
         fontSize: '0.75rem',
         fontWeight: 'bold',
         padding: '0.25rem 0.5rem',
@@ -189,22 +190,24 @@ const ProductScreenStyles = makeStyles(() => ({
     footer: {
         width: '100%',
         height: '6rem',
-        borderTop: '1px solid #F8F7FA',
-        backgroundColor: '#fff',
+        padding: theme.spacing(3),
+        backgroundColor: '#FFE202',
         position: 'fixed',
         zIndex: 5,
         bottom: 0,
     },
     addToCardBtn: {
-        width: '16.4375rem',
+        width: '3rem',
         height: '3rem',
-        backgroundColor: '#FFE202',
-        borderRadius: '1rem',
+        padding: 0,
+        marginLeft: 'auto',
+        backgroundColor: '#fff',
+        borderRadius: '50%',
         boxShadow: '0 5px 15px rgba(0,0,0,0.1)',
         fontSize: '1rem',
         fontWeight: 500,
         '&:hover': {
-            backgroundColor: '#FFE202',
+            backgroundColor: '#fff',
             boxShadow: '0 5px 15px rgba(0,0,0,0.1)',
         },
     },
@@ -219,6 +222,67 @@ const ProductScreenStyles = makeStyles(() => ({
             boxShadow: '0 5px 15px rgba(0,0,0,0.1)',
         },
     },
+    color: {
+        marginTop: theme.spacing(3),
+        fontSize: '0.875rem',
+        fontWeight: 700,
+        color: '#A6A6AA',
+    },
+    colorName: {
+        fontSize: '1rem',
+        fontWeight: 700,
+        color: '#3A3A3A',
+        marginTop: theme.spacing(1),
+        marginBottom: theme.spacing(1),
+    },
+    colorBtnContainer: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '2.5rem',
+        height: '2.5rem',
+        borderRadius: '50%',
+        padding: '4px',
+    },
+    colorBtnContainerActive: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '2.5rem',
+        height: '2.5rem',
+        borderRadius: '50%',
+        border: '3px solid #5FA1D5',
+        padding: '3px',
+    },
+    colorBtn: {
+        width: '1.75rem',
+        height: '1.75rem',
+        borderRadius: '50%',
+    },
+    addToCartfooter: {
+        width: '100%',
+        height: '6rem',
+        borderTop: '2px solid #F8F7FA',
+        backgroundColor: '#fff',
+        position: 'fixed',
+        zIndex: 5,
+        bottom: 0,
+        paddingRight: theme.spacing(3),
+        paddingLeft: theme.spacing(3),
+    },
+    goToCartBtn: {
+        width: '16.4375rem',
+        height: '3rem',
+        backgroundColor: '#FFE202',
+        borderRadius: '1rem',
+        boxShadow: '0 5px 15px rgba(0,0,0,0.1)',
+        fontSize: '1rem',
+        fontWeight: 500,
+        '&:hover': {
+            backgroundColor: '#FFE202',
+            boxShadow: '0 5px 15px rgba(0,0,0,0.1)',
+        },
+    },
 }));
 
-export default ProductScreenStyles;
+export default AddToCartScreenStyles;

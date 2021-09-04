@@ -16,13 +16,13 @@ const HomeScreenStyles = makeStyles(() => ({
         background: '#FFE202',
         position: 'absolute',
         top: '-23rem',
-        right: '-23rem',
+        left: '-23rem',
         zIndex: -1,
     },
     mainTitle: {
         width: '18rem',
         marginTop: '2rem',
-        marginRight: '0.75rem',
+        marginLeft: '0.75rem',
     },
     avatarContainer: {
         paddingRight: '0.75rem',
@@ -36,7 +36,7 @@ const HomeScreenStyles = makeStyles(() => ({
     loginText: {
         fontSize: '1rem',
         fontWeight: 'bold',
-        marginRight: '0.4rem',
+        marginLeft: '0.3rem',
     },
     gridContaier: {
         width: '100%',
@@ -82,7 +82,7 @@ const HomeScreenStyles = makeStyles(() => ({
     favoriteIcon: {
         position: 'absolute',
         top: '0.5rem',
-        right: '0.5rem',
+        left: '0.5rem',
         background: '#ffffff',
         boxShadow: '0px 1px 1px 1px rgba(0,0,0,0.2)',
     },
@@ -159,7 +159,7 @@ const HomeScreenStyles = makeStyles(() => ({
         position: 'absolute',
         zIndex: 2,
         bottom: '1rem',
-        left: '1rem',
+        right: '1rem',
         background: '#ffffff',
         boxShadow: '0px 1px 1px 1px rgba(0,0,0,0.2)',
     },
