@@ -32,7 +32,7 @@ const AddToCartScreen = ({ match }) => {
   const { loading, error, product } = productDetails;
   const [selectedColor, setSelectedColor] = useState(0);
   const [selectedColorName, setSelectedColorName] = useState(
-    product.color[0].colorName
+    product.color[0]?.colorName
   );
   const [checked, setChecked] = useState(false);
 
