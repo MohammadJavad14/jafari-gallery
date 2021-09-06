@@ -11,8 +11,15 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
+import Input from '@material-ui/core/Input';
 import Slide from '@material-ui/core/Slide';
+import Drawer from '@material-ui/core/Drawer';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import CloseIcon from '@material-ui/icons/Close';
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
 import LocalMallOutlinedIcon from '@material-ui/icons/LocalMallOutlined';
 import Badge from '@material-ui/core/Badge';
 import Typography from '@material-ui/core/Typography';
@@ -36,7 +43,10 @@ const AddToCartScreen = ({ match }) => {
     : null;
   const [selectedColor, setSelectedColor] = useState(0);
   const [selectedColorName, setSelectedColorName] = useState(colorName);
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(
+    cartItems.find((x) => x.product === product._id)
+  );
+  const [drawer, setDrawer] = useState(false);
 
   useEffect(() => {
     // eslint-disable-next-line no-undef
@@ -46,7 +56,7 @@ const AddToCartScreen = ({ match }) => {
     if (cartItems.find((x) => x.product === product._id)) {
       setChecked(true);
     }
-  }, [dispatch, match, cartItems]);
+  }, [dispatch, match, cartItems, loading]);
 
   const classes = AddToCartScreenStyles();
 
@@ -57,6 +67,16 @@ const AddToCartScreen = ({ match }) => {
     setSelectedColor(colorIndex);
     const name = product?.color[colorIndex].colorName;
     setSelectedColorName(name);
+  };
+
+  const increaseQty = (id, qty, color, countInStock) => {
+    const newQty = Math.min(qty + 1, countInStock);
+    dispatch(addToCart(id, newQty, color));
+  };
+
+  const decreaseQty = (id, qty, color) => {
+    const newQty = Math.max(qty - 1, 1);
+    dispatch(addToCart(id, newQty, color));
   };
 
   return (
@@ -190,20 +210,21 @@ const AddToCartScreen = ({ match }) => {
                 </Button>
               </Grid>
               <Grid item style={{ marginRight: 'auto' }}>
-                <Button variant="contained" className={classes.goToCartBtn}>
+                <Button
+                  variant="contained"
+                  className={classes.goToCartBtn}
+                  onClick={() => {
+                    setDrawer(true);
+                  }}
+                >
                   <Grid
                     container
                     alignItems="center"
                     justifyContent="space-around"
                   >
-                    <Grid
-                      item
-                      component={Link}
-                      to={`/addtocart/${product?._id}`}
-                      style={{ textDecoration: 'none', color: 'inherit' }}
-                    >
+                    <Grid item>
                       <Typography className={classes.addToCartTxt}>
-                        رفتن به سبد خرید
+                        سبد خرید
                       </Typography>
                     </Grid>
                     <Grid item>
@@ -218,6 +239,87 @@ const AddToCartScreen = ({ match }) => {
               </Grid>
             </Grid>
           </Slide>
+          <Drawer
+            anchor="bottom"
+            open={drawer}
+            onClose={() => {
+              setDrawer(false);
+            }}
+            classes={{ paper: classes.drawerPaper }}
+          >
+            <Typography align="center" style={{ fontWeight: 800 }}>
+              سبد خرید من
+            </Typography>
+            <CloseIcon
+              className={classes.cartClose}
+              onClick={() => {
+                setDrawer(false);
+              }}
+            />
+
+            <List>
+              {cartItems.map((item) => (
+                <ListItem key={item.product} disableGutters>
+                  <Card className={classes.cartCard} elevation={0}>
+                    <CardMedia
+                      image={item.image}
+                      title={item.name}
+                      className={classes.cartMedia}
+                    />
+                  </Card>
+                  <Typography style={{ width: '7rem', marginRight: '1rem' }}>
+                    {item.name}
+                  </Typography>
+                  <Grid
+                    container
+                    alignItems="center"
+                    style={{ width: 'auto', marginRight: '1rem' }}
+                  >
+                    <Grid item>
+                      <IconButton
+                        id={item.product}
+                        size="small"
+                        classes={{ root: classes.changeQtyBtn }}
+                        onClick={() => {
+                          increaseQty(
+                            item.product,
+                            item.qty,
+                            item.color,
+                            item.countInStock
+                          );
+                        }}
+                      >
+                        <AddIcon />
+                      </IconButton>
+                    </Grid>
+                    <Grid item>
+                      <Input
+                        id={item.product}
+                        disableUnderline
+                        value={item.qty.toLocaleString('fa-IR')}
+                        classes={{
+                          root: classes.qtyInput,
+                          input: classes.qtyInput,
+                        }}
+                      />
+                    </Grid>
+                    <Grid item>
+                      <IconButton
+                        id={item.product}
+                        size="small"
+                        classes={{ root: classes.changeQtyBtn }}
+                        onClick={() => {
+                          decreaseQty(item.product, item.qty, item.color);
+                        }}
+                      >
+                        <RemoveIcon />
+                      </IconButton>
+                    </Grid>
+                  </Grid>
+                </ListItem>
+              ))}
+            </List>
+          </Drawer>
         </>
       )}
     </>

@@ -283,6 +283,33 @@ const AddToCartScreenStyles = makeStyles((theme) => ({
             boxShadow: '0 5px 15px rgba(0,0,0,0.1)',
         },
     },
+    drawerPaper: {
+        padding: theme.spacing(2),
+        borderRadius: '1rem 1rem 0 0',
+    },
+    cartClose: {
+        position: 'absolute',
+        right: '1rem',
+        color: '#3A3A3A',
+    },
+    cartCard: {
+        width: '4.375rem',
+        backgroundColor: '#F8F7FA',
+    },
+    cartMedia: {
+        width: '4.375rem',
+        height: '4.25rem',
+        backgroundSize: '3.5rem',
+    },
+    qtyInput: {
+        width: '1.8rem',
+        textAlign: 'center',
+    },
+    changeQtyBtn: {
+        width: '1.6rem',
+        height: '1.6rem',
+        border: '1px solid #ccc',
+    },
 }));
 
 export default AddToCartScreenStyles;
