@@ -14,6 +14,7 @@ import Button from '@material-ui/core/Button';
 import Slide from '@material-ui/core/Slide';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import LocalMallOutlinedIcon from '@material-ui/icons/LocalMallOutlined';
+import Badge from '@material-ui/core/Badge';
 import Typography from '@material-ui/core/Typography';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { Link } from 'react-router-dom';
@@ -21,12 +22,14 @@ import { listProductDetails } from '../actions/productAcions';
 import Rating from '../components/Rating';
 import Loader from '../components/UI/Loader';
 import AddToCartScreenStyles from '../styles/AddToCartScreenStyles';
+import { addToCart, removeFromCart } from '../actions/cartActions';
 
 const AddToCartScreen = ({ match }) => {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.productDetails);
   const { error } = useSelector((state) => state.productDetails);
   const { product } = useSelector((state) => state.productDetails);
+  const { cartItems } = useSelector((state) => state.cart);
 
   const colorName = product?.color?.length
     ? product?.color[0]?.colorName
@@ -39,8 +42,11 @@ const AddToCartScreen = ({ match }) => {
     // eslint-disable-next-line no-undef
     window.scrollTo(0, 0);
     dispatch(listProductDetails(match.params.id));
-    console.log('dispatched');
-  }, [dispatch, match]);
+
+    if (cartItems.find((x) => x.product === product._id)) {
+      setChecked(true);
+    }
+  }, [dispatch, match, cartItems]);
 
   const classes = AddToCartScreenStyles();
 
@@ -77,7 +83,13 @@ const AddToCartScreen = ({ match }) => {
               <ArrowBackIosIcon />
             </IconButton>
             <IconButton classes={{ root: classes.favoriteIcon }}>
-              <LocalMallOutlinedIcon />
+              <Badge
+                badgeContent={cartItems?.length?.toLocaleString('fa-IR')}
+                color="secondary"
+                invisible={cartItems?.length === 0}
+              >
+                <LocalMallOutlinedIcon />
+              </Badge>
             </IconButton>
           </Card>
           <div style={{ padding: '1.5rem', paddingBottom: '0' }}>
@@ -151,7 +163,9 @@ const AddToCartScreen = ({ match }) => {
             </Grid>
             <IconButton
               className={classes.addToCardBtn}
-              onClick={() => setChecked(true)}
+              onClick={() =>
+                dispatch(addToCart(product._id, 1, selectedColorName))
+              }
             >
               <ArrowBackIcon />
             </IconButton>
@@ -164,9 +178,16 @@ const AddToCartScreen = ({ match }) => {
               className={classes.addToCartfooter}
             >
               <Grid item>
-                <Typography style={{ fontSize: '1rem', color: '#CBCBD4' }}>
-                  حذف
-                </Typography>
+                <Button
+                  onClick={() => {
+                    dispatch(removeFromCart(product._id));
+                    setChecked(false);
+                  }}
+                >
+                  <Typography style={{ fontSize: '1rem', color: '#CBCBD4' }}>
+                    حذف
+                  </Typography>
+                </Button>
               </Grid>
               <Grid item style={{ marginRight: 'auto' }}>
                 <Button variant="contained" className={classes.goToCartBtn}>
