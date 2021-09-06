@@ -190,7 +190,7 @@ const AddToCartScreenStyles = makeStyles((theme) => ({
     footer: {
         width: '100%',
         height: '6rem',
-        padding: theme.spacing(3),
+        padding: theme.spacing(2),
         backgroundColor: '#FFE202',
         position: 'fixed',
         zIndex: 5,
@@ -267,8 +267,8 @@ const AddToCartScreenStyles = makeStyles((theme) => ({
         position: 'fixed',
         zIndex: 5,
         bottom: 0,
-        paddingRight: theme.spacing(3),
-        paddingLeft: theme.spacing(3),
+        paddingRight: theme.spacing(2),
+        paddingLeft: theme.spacing(2),
     },
     goToCartBtn: {
         width: '16.4375rem',
