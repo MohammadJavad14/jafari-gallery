@@ -316,9 +316,50 @@ const AddToCartScreen = ({ match }) => {
                       </IconButton>
                     </Grid>
                   </Grid>
+                  <Typography
+                    style={{ fontWeight: 800, marginRight: '1rem' }}
+                  >{`${item.price.toLocaleString('fa-IR')} `}</Typography>
                 </ListItem>
               ))}
             </List>
+            <Grid
+              container
+              justifyContent="space-between"
+              alignItems="center"
+              className={classes.checkoutContainer}
+            >
+              <Grid item>
+                <Typography align="center" style={{ color: '#A6A6AA' }}>
+                  جمع کل
+                </Typography>
+                <Typography style={{ fontWeight: 800, fontSize: '1.25rem' }}>
+                  {cartItems
+                    .reduce((acc, item) => item.price * item.qty + acc, 0)
+                    .toLocaleString('fa-IR')}
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Button
+                  variant="contained"
+                  className={classes.goToCartBtn}
+                  onClick={() => {
+                    setDrawer(true);
+                  }}
+                >
+                  <Grid
+                    container
+                    alignItems="center"
+                    justifyContent="space-around"
+                  >
+                    <Grid item>
+                      <Typography className={classes.addToCartTxt}>
+                        ادامه
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Button>
+              </Grid>
+            </Grid>
           </Drawer>
         </>
       )}

@@ -285,6 +285,7 @@ const AddToCartScreenStyles = makeStyles((theme) => ({
     },
     drawerPaper: {
         padding: theme.spacing(2),
+        paddingBottom: 0,
         borderRadius: '1rem 1rem 0 0',
     },
     cartClose: {
@@ -309,6 +310,10 @@ const AddToCartScreenStyles = makeStyles((theme) => ({
         width: '1.6rem',
         height: '1.6rem',
         border: '1px solid #ccc',
+    },
+    checkoutContainer: {
+        height: '6rem',
+        borderTop: '1px solid #F8F7FA',
     },
 }));
 
