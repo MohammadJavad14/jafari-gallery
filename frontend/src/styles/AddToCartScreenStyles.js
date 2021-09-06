@@ -303,17 +303,30 @@ const AddToCartScreenStyles = makeStyles((theme) => ({
         backgroundSize: '3.5rem',
     },
     qtyInput: {
-        width: '1.8rem',
+        width: '1.5rem',
         textAlign: 'center',
     },
     changeQtyBtn: {
-        width: '1.6rem',
-        height: '1.6rem',
+        width: '1.5rem',
+        height: '1.5rem',
         border: '1px solid #ccc',
     },
     checkoutContainer: {
         height: '6rem',
         borderTop: '1px solid #F8F7FA',
+    },
+    checkoutBtn: {
+        width: '14rem',
+        height: '3rem',
+        backgroundColor: '#FFE202',
+        borderRadius: '1rem',
+        boxShadow: '0 5px 15px rgba(0,0,0,0.1)',
+        fontSize: '1rem',
+        fontWeight: 500,
+        '&:hover': {
+            backgroundColor: '#FFE202',
+            boxShadow: '0 5px 15px rgba(0,0,0,0.1)',
+        },
     },
 }));
 

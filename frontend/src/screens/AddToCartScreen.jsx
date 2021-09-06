@@ -267,13 +267,15 @@ const AddToCartScreen = ({ match }) => {
                       className={classes.cartMedia}
                     />
                   </Card>
-                  <Typography style={{ width: '7rem', marginRight: '1rem' }}>
+                  <Typography
+                    style={{ width: '5.5rem', marginRight: '0.7rem' }}
+                  >
                     {item.name}
                   </Typography>
                   <Grid
                     container
                     alignItems="center"
-                    style={{ width: 'auto', marginRight: '1rem' }}
+                    style={{ width: 'auto', marginRight: '0.7rem' }}
                   >
                     <Grid item>
                       <IconButton
@@ -341,7 +343,7 @@ const AddToCartScreen = ({ match }) => {
               <Grid item>
                 <Button
                   variant="contained"
-                  className={classes.goToCartBtn}
+                  className={classes.checkoutBtn}
                   onClick={() => {
                     setDrawer(true);
                   }}
