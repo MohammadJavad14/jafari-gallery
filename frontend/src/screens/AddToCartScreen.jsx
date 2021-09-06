@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-underscore-dangle */
@@ -16,48 +17,45 @@ import LocalMallOutlinedIcon from '@material-ui/icons/LocalMallOutlined';
 import Typography from '@material-ui/core/Typography';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { Link } from 'react-router-dom';
-import { listProduct, listProductDetails } from '../actions/productAcions';
+import { listProductDetails } from '../actions/productAcions';
 import Rating from '../components/Rating';
-import Review from '../components/Review';
-import Product from '../components/Product';
 import Loader from '../components/UI/Loader';
 import AddToCartScreenStyles from '../styles/AddToCartScreenStyles';
-import SwiperSlider from '../components/SwiperSlider';
 
 const AddToCartScreen = ({ match }) => {
   const dispatch = useDispatch();
-  const productList = useSelector((state) => state.productList);
-  const { loading: productListLoading, products } = productList;
-  const productDetails = useSelector((state) => state.productDetails);
-  const { loading, error, product } = productDetails;
+  const { loading } = useSelector((state) => state.productDetails);
+  const { error } = useSelector((state) => state.productDetails);
+  const { product } = useSelector((state) => state.productDetails);
+
+  const colorName = product?.color?.length
+    ? product?.color[0]?.colorName
+    : null;
   const [selectedColor, setSelectedColor] = useState(0);
-  const [selectedColorName, setSelectedColorName] = useState(
-    product.color[0]?.colorName
-  );
+  const [selectedColorName, setSelectedColorName] = useState(colorName);
   const [checked, setChecked] = useState(false);
 
   useEffect(() => {
     // eslint-disable-next-line no-undef
     window.scrollTo(0, 0);
-    dispatch(listProduct());
-
     dispatch(listProductDetails(match.params.id));
+    console.log('dispatched');
   }, [dispatch, match]);
 
   const classes = AddToCartScreenStyles();
 
   const handleColorBtn = (id) => {
-    const colorIndex = product.color.findIndex(
+    const colorIndex = product?.color.findIndex(
       (curColor) => curColor._id === id
     );
     setSelectedColor(colorIndex);
-    const name = product.color[colorIndex].colorName;
+    const name = product?.color[colorIndex].colorName;
     setSelectedColorName(name);
   };
 
   return (
     <>
-      {loading || productListLoading ? (
+      {loading ? (
         <Loader />
       ) : error ? (
         <h3>{error.message}</h3>
@@ -66,8 +64,8 @@ const AddToCartScreen = ({ match }) => {
           <Card className={classes.card} elevation={0}>
             <Card>
               <CardMedia
-                image={product.image}
-                title={product.name}
+                image={product?.image}
+                title={product?.name}
                 className={classes.media}
               />
             </Card>
@@ -84,26 +82,29 @@ const AddToCartScreen = ({ match }) => {
           </Card>
           <div style={{ padding: '1.5rem', paddingBottom: '0' }}>
             <Typography variant="h5" className={classes.productName}>
-              {product.name}
+              {product?.name}
             </Typography>
 
             <Grid container alignItems="center">
-              <Rating value={product.rating} rateNumber={product.numReviews} />
+              <Rating
+                value={product?.rating}
+                rateNumber={product?.numReviews}
+              />
               <Grid item>
                 <Typography className={classes.rateNumber}>
-                  <strong>{product.rating?.toLocaleString('fa-IR')}</strong> (
-                  {`از ${product.numReviews?.toLocaleString('fa-IR')} نظر`})
+                  <strong>{product?.rating?.toLocaleString('fa-IR')}</strong> (
+                  {`از ${product?.numReviews?.toLocaleString('fa-IR')} نظر`})
                 </Typography>
               </Grid>
             </Grid>
-            {product.color.length !== 0 && (
+            {product?.color?.length !== 0 && (
               <>
                 <Typography classes={{ root: classes.color }}>رنگ</Typography>
                 <Typography classes={{ root: classes.colorName }}>
                   {selectedColorName}
                 </Typography>
                 <Grid container spacing={2} style={{ marginBottom: '2rem' }}>
-                  {product.color.map((curColor, index) => (
+                  {product?.color?.map((curColor, index) => (
                     <Grid item>
                       <div
                         className={`${
@@ -137,7 +138,7 @@ const AddToCartScreen = ({ match }) => {
           >
             <Grid item>
               <Typography classes={{ root: classes.price }}>
-                {`${product.price?.toLocaleString('fa-IR')} تومان`}
+                {`${product?.price?.toLocaleString('fa-IR')} تومان`}
               </Typography>
             </Grid>
             <Grid item>
@@ -177,7 +178,7 @@ const AddToCartScreen = ({ match }) => {
                     <Grid
                       item
                       component={Link}
-                      to={`/addtocart/${product._id}`}
+                      to={`/addtocart/${product?._id}`}
                       style={{ textDecoration: 'none', color: 'inherit' }}
                     >
                       <Typography className={classes.addToCartTxt}>
@@ -187,7 +188,7 @@ const AddToCartScreen = ({ match }) => {
                     <Grid item>
                       <Typography
                         className={classes.price}
-                      >{`${product.price?.toLocaleString(
+                      >{`${product?.price?.toLocaleString(
                         'fa-IR'
                       )} `}</Typography>
                     </Grid>

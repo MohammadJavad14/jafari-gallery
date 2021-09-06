@@ -10,7 +10,7 @@ const App = () => (
     <Route path="/" component={HomeScreen} exact />
     <Route path="/product/:id" component={ProductScreen} exact />
     <Route path="/login" component={LoginScreen} />
-    <Route path="/addtocart/:id" component={AddToCartScreen} />
+    <Route path="/addtocart/:id" component={AddToCartScreen} exact />
   </BrowserRouter>
 );
 

@@ -122,18 +122,19 @@ const ProductScreen = ({ match }) => {
             className={classes.footer}
           >
             <Grid item>
-              <Button variant="contained" className={classes.addToCardBtn}>
+              <Button
+                variant="contained"
+                className={classes.addToCardBtn}
+                component={Link}
+                to={`/addtocart/${product._id}`}
+                style={{ textDecoration: 'none', color: 'inherit' }}
+              >
                 <Grid
                   container
                   alignItems="center"
                   justifyContent="space-around"
                 >
-                  <Grid
-                    item
-                    component={Link}
-                    to={`/addtocart/${product._id}`}
-                    style={{ textDecoration: 'none', color: 'inherit' }}
-                  >
+                  <Grid item>
                     <Typography className={classes.addToCartTxt}>
                       افزودن به سبد خرید
                     </Typography>
