@@ -30,6 +30,7 @@ import Rating from '../components/Rating';
 import Loader from '../components/UI/Loader';
 import AddToCartScreenStyles from '../styles/AddToCartScreenStyles';
 import { addToCart, removeFromCart } from '../actions/cartActions';
+import { PRODUCT_DETAILS_RESET } from '../constants/productConstants';
 
 const AddToCartScreen = ({ match }) => {
   const dispatch = useDispatch();
@@ -41,22 +42,33 @@ const AddToCartScreen = ({ match }) => {
   const colorName = product?.color?.length
     ? product?.color[0]?.colorName
     : null;
-  const [selectedColor, setSelectedColor] = useState(0);
+  const [selectedColor, setSelectedColor] = useState(null);
   const [selectedColorName, setSelectedColorName] = useState(colorName);
-  const [checked, setChecked] = useState(
-    cartItems.find((x) => x.product === product._id)
-  );
+  const [checked, setChecked] = useState(false);
+
   const [drawer, setDrawer] = useState(false);
 
   useEffect(() => {
     // eslint-disable-next-line no-undef
     window.scrollTo(0, 0);
-    dispatch(listProductDetails(match.params.id));
+    if (product._id !== match.params.id) {
+      dispatch(listProductDetails(match.params.id));
+    }
 
-    if (cartItems.find((x) => x.product === product._id)) {
+    if (
+      !loading &&
+      cartItems.findIndex((x) => x.product === product._id) === -1
+    ) {
+      setChecked(false);
+    }
+
+    if (
+      !loading &&
+      cartItems.findIndex((x) => x.product === product._id) !== -1
+    ) {
       setChecked(true);
     }
-  }, [dispatch, match, cartItems, loading]);
+  }, [dispatch, match, cartItems, loading, product]);
 
   const classes = AddToCartScreenStyles();
 
@@ -135,7 +147,7 @@ const AddToCartScreen = ({ match }) => {
                 <Typography classes={{ root: classes.colorName }}>
                   {selectedColorName}
                 </Typography>
-                <Grid container spacing={2} style={{ marginBottom: '2rem' }}>
+                <Grid container spacing={1} style={{ marginBottom: '2rem' }}>
                   {product?.color?.map((curColor, index) => (
                     <Grid item>
                       <div

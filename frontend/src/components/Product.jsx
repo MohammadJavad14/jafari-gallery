@@ -102,7 +102,7 @@ const Product = ({ product }) => {
                         root: classes.addToCartTxt,
                       }}
                       component={Link}
-                      to="/"
+                      to={`/addtocart/${product._id}`}
                     >
                       خرید
                     </Typography>
