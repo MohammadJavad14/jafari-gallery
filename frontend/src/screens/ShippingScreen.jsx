@@ -15,6 +15,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import CloseIcon from '@material-ui/icons/Close';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { saveShippingAddress } from '../actions/cartActions';
 import { login } from '../actions/userActions';
 
 const useStyles = makeStyles((theme) => ({
@@ -60,40 +61,40 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LoginScreen = ({ location, history }) => {
+const ShippingScreen = ({ location, history }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.userLogin);
   const { userInfo } = useSelector((state) => state.userLogin);
-  // const { error } = useSelector((state) => state.userLogin);
+  const { error } = useSelector((state) => state.userLogin);
+  const { shippingAddress } = useSelector((state) => state.cart);
 
-  const redirect = location.search ? location.search.split('=')[1] : '/';
-  useEffect(() => {
-    if (userInfo) {
-      history.push(redirect);
-    }
-  }, [history, userInfo, redirect]);
+  //   const redirect = location.search ? location.search.split('=')[1] : '/';
+  //   useEffect(() => {
+  //     if (userInfo) {
+  //       history.push(redirect);
+  //     }
+  //   }, [history, userInfo, redirect]);
 
   const validationSchema = yup.object({
-    email: yup
-      .string('ایمیل خود را وارد کنید')
-      .email('لطفا ایمیل معتبر وارد کنید')
-      .required('وارد کردن ایمیل الزامی است'),
-    password: yup
-      .string('رمز عبور خود را وارد کنید')
-      .min(6, 'رمز عبور حداقل باید ۶ کارکتر داشته باشد')
-      .required('وارد کردن رمز عبور الزامی است'),
+    country: yup.string().required('وارد کردن استان الزامی است'),
+    city: yup.string().required('وارد کردن شهر الزامی است'),
+    address: yup.string().required('وارد کردن آدرس الزامی است'),
+    postalCode: yup.string().required('وارد کردن کدپستی الزامی است'),
   });
 
   const formik = useFormik({
     initialValues: {
-      email: 'admin@example.com',
-      password: '123456',
+      country: shippingAddress.country,
+      city: shippingAddress.city,
+      address: shippingAddress.address,
+      postalCode: shippingAddress.postalCode,
     },
     enableReinitialize: true,
     validationSchema: validationSchema,
-    onSubmit: ({ email, password }) => {
-      dispatch(login(email, password));
+    onSubmit: (values) => {
+      dispatch(saveShippingAddress(values));
+      history.push('/payment');
     },
   });
   return (
@@ -101,7 +102,7 @@ const LoginScreen = ({ location, history }) => {
       <Container>
         <Grid container alignItems="center" justifyContent="center">
           <Grid item>
-            <Typography variant="h5">ورود</Typography>
+            <Typography variant="h5">مشخصات پستی</Typography>
           </Grid>
           <Grid item>
             <IconButton className={classes.closeBtn} component={Link} to="/">
@@ -110,33 +111,57 @@ const LoginScreen = ({ location, history }) => {
           </Grid>
         </Grid>
         <Typography variant="h4" className={classes.brand}>
-          گالری جعفری
+          مشخصات پستی
         </Typography>
         <form onSubmit={formik.handleSubmit}>
           <TextField
             fullWidth
             variant="outlined"
-            id="email"
-            name="email"
-            type="email"
-            label="ایمیل"
-            value={formik.values.email}
+            id="country"
+            name="country"
+            label="استان"
+            value={formik.values.country}
             onChange={formik.handleChange}
-            error={formik.touched.email && Boolean(formik.errors.email)}
-            helperText={formik.touched.email && formik.errors.email}
+            error={formik.touched.country && Boolean(formik.errors.country)}
+            helperText={formik.touched.country && formik.errors.country}
             className={classes.input}
           />
           <TextField
             fullWidth
             variant="outlined"
-            id="password"
-            name="password"
-            type="password"
-            label="رمز عبور"
-            value={formik.values.password}
+            id="city"
+            name="city"
+            label="شهر"
+            value={formik.values.city}
             onChange={formik.handleChange}
-            error={formik.touched.password && Boolean(formik.errors.password)}
-            helperText={formik.touched.password && formik.errors.password}
+            error={formik.touched.city && Boolean(formik.errors.city)}
+            helperText={formik.touched.city && formik.errors.city}
+            classes={{ root: classes.input }}
+          />
+          <TextField
+            fullWidth
+            variant="outlined"
+            id="address"
+            name="address"
+            label="آدرس"
+            value={formik.values.address}
+            onChange={formik.handleChange}
+            error={formik.touched.address && Boolean(formik.errors.address)}
+            helperText={formik.touched.address && formik.errors.address}
+            classes={{ root: classes.input }}
+          />
+          <TextField
+            fullWidth
+            variant="outlined"
+            id="postalCode"
+            name="postalCode"
+            label="کد پستی"
+            value={formik.values.postalCode}
+            onChange={formik.handleChange}
+            error={
+              formik.touched.postalCode && Boolean(formik.errors.postalCode)
+            }
+            helperText={formik.touched.postalCode && formik.errors.postalCode}
             classes={{ root: classes.input }}
           />
           <Button
@@ -149,29 +174,14 @@ const LoginScreen = ({ location, history }) => {
               <CircularProgress size={30} />
             ) : (
               <Typography style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
-                ورود
+                ثبت و ادامه
               </Typography>
             )}
           </Button>
         </form>
-        <Grid container justifyContent="space-between">
-          <Grid item>
-            <Typography>
-              ثبت نام نکرده اید؟{' '}
-              <strong style={{ textDecoration: 'underline' }}>ثبت نام</strong>
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Typography
-              style={{ textDecoration: 'underline', fontWeight: 'bold' }}
-            >
-              فراموشی رمز
-            </Typography>
-          </Grid>
-        </Grid>
       </Container>
     </Box>
   );
 };
 
-export default LoginScreen;
+export default ShippingScreen;

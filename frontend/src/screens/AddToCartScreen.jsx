@@ -30,9 +30,8 @@ import Rating from '../components/Rating';
 import Loader from '../components/UI/Loader';
 import AddToCartScreenStyles from '../styles/AddToCartScreenStyles';
 import { addToCart, removeFromCart } from '../actions/cartActions';
-import { PRODUCT_DETAILS_RESET } from '../constants/productConstants';
 
-const AddToCartScreen = ({ match }) => {
+const AddToCartScreen = ({ match, history }) => {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.productDetails);
   const { error } = useSelector((state) => state.productDetails);
@@ -89,6 +88,10 @@ const AddToCartScreen = ({ match }) => {
   const decreaseQty = (id, qty, color) => {
     const newQty = Math.max(qty - 1, 1);
     dispatch(addToCart(id, newQty, color));
+  };
+
+  const checkoutHandler = () => {
+    history.push('/login?redirect=shipping');
   };
 
   return (
@@ -357,7 +360,7 @@ const AddToCartScreen = ({ match }) => {
                   variant="contained"
                   className={classes.checkoutBtn}
                   onClick={() => {
-                    setDrawer(true);
+                    checkoutHandler();
                   }}
                 >
                   <Grid
