@@ -22,21 +22,24 @@ import SwiperSlider from '../components/SwiperSlider';
 
 const ProductScreen = ({ match }) => {
   const dispatch = useDispatch();
-  const productList = useSelector((state) => state.productList);
-  const { loading: productListLoading, products } = productList;
-  const productDetails = useSelector((state) => state.productDetails);
-  const { loading, error, product } = productDetails;
+  const products = useSelector((state) => state.productList.products);
+  const productListLoading = useSelector((state) => state.productList.loading);
+  const product = useSelector((state) => state.productDetails.product);
+  const loading = useSelector((state) => state.productDetails.loading);
+  const error = useSelector((state) => state.productDetails.error);
+  let images;
 
   useEffect(() => {
     // eslint-disable-next-line no-undef
     window.scrollTo(0, 0);
+    images = [];
     dispatch(listProduct());
-
     dispatch(listProductDetails(match.params.id));
   }, [dispatch, match]);
 
   const classes = ProductScreenStyles();
-
+  images = product.sliderImages;
+  console.log(images);
   return (
     <>
       {loading || productListLoading ? (
@@ -46,10 +49,7 @@ const ProductScreen = ({ match }) => {
       ) : (
         <>
           <Card className={classes.card} elevation={0}>
-            <SwiperSlider
-              product={product}
-              sliderImages={product.sliderImages}
-            />
+            <SwiperSlider product={product} sliderImages={images} />
 
             <IconButton
               classes={{ root: classes.leftArrowIcon }}

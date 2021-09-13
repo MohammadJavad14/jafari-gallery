@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable arrow-body-style */
 /* eslint-disable import/no-extraneous-dependencies */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 // import Swiper core and required modules
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Pagination } from 'swiper';
@@ -24,7 +24,10 @@ import '../styles/SwiperStyles.css';
 SwiperCore.use([Pagination]);
 
 const SwiperSlider = ({ sliderImages, product }) => {
-  console.log(sliderImages);
+  const [images, setImages] = useState(sliderImages);
+  useEffect(() => {
+    setImages(sliderImages);
+  }, [product]);
   const classes = ProductScreenStyles();
 
   return (
@@ -43,7 +46,7 @@ const SwiperSlider = ({ sliderImages, product }) => {
             />
           </Card>
         </SwiperSlide>
-        {sliderImages?.map((image) => (
+        {images?.map((image) => (
           <SwiperSlide key={product._id}>
             <Card>
               <CardMedia
