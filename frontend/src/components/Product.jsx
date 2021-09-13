@@ -91,6 +91,7 @@ const Product = ({ product }) => {
                 </Grid>
                 <Grid item>
                   <Button
+                    disableElevation
                     variant="contained"
                     classes={{
                       root: classes.addToCart,
@@ -101,7 +102,7 @@ const Product = ({ product }) => {
                         root: classes.addToCartTxt,
                       }}
                       component={Link}
-                      to="/"
+                      to={`/addtocart/${product._id}`}
                     >
                       خرید
                     </Typography>

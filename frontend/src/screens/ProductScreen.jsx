@@ -122,7 +122,13 @@ const ProductScreen = ({ match }) => {
             className={classes.footer}
           >
             <Grid item>
-              <Button variant="contained" className={classes.addToCardBtn}>
+              <Button
+                variant="contained"
+                className={classes.addToCardBtn}
+                component={Link}
+                to={`/addtocart/${product._id}`}
+                style={{ textDecoration: 'none', color: 'inherit' }}
+              >
                 <Grid
                   container
                   alignItems="center"

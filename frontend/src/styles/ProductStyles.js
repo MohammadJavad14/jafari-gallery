@@ -91,7 +91,7 @@ const HomeScreenStyles = makeStyles(() => ({
     favoriteIcon: {
         position: 'absolute',
         top: '0.5rem',
-        right: '0.5rem',
+        left: '0.5rem',
         background: '#ffffff',
         boxShadow: '0px 1px 1px 1px rgba(0,0,0,0.2)',
     },
@@ -140,7 +140,7 @@ const HomeScreenStyles = makeStyles(() => ({
         width: '5rem',
         height: '1.25rem',
         background: '#ECF6FF',
-        marginRight: '2rem',
+        marginLeft: '2rem',
         borderRadius: '6.25rem',
     },
     addToCartTxt: {

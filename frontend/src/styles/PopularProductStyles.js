@@ -44,7 +44,7 @@ const PopularProductStyles = makeStyles(() => ({
         position: 'absolute',
         zIndex: 2,
         top: '0.3rem',
-        right: '0.3rem',
+        left: '0.3rem',
         background: '#ffffff',
         boxShadow: '0px 1px 1px 1px rgba(0,0,0,0.2)',
     },
