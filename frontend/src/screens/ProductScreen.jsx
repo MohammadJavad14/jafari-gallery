@@ -126,7 +126,7 @@ const ProductScreen = ({ match }) => {
                 variant="contained"
                 className={classes.addToCardBtn}
                 component={Link}
-                to={`/addtocart/${product._id}`}
+                to={`/addToCart/${product._id}`}
                 style={{ textDecoration: 'none', color: 'inherit' }}
               >
                 <Grid

@@ -23,7 +23,7 @@ import RemoveIcon from '@material-ui/icons/Remove';
 import LocalMallOutlinedIcon from '@material-ui/icons/LocalMallOutlined';
 import Badge from '@material-ui/core/Badge';
 import Typography from '@material-ui/core/Typography';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import { Link } from 'react-router-dom';
 import { listProductDetails } from '../actions/productAcions';
 import Rating from '../components/Rating';
@@ -183,6 +183,14 @@ const AddToCartScreen = ({ match, history }) => {
             className={classes.footer}
             style={{ display: `${checked === true ? 'none' : 'flex'}` }}
           >
+            <IconButton
+              className={classes.addToCardBtn}
+              onClick={() =>
+                dispatch(addToCart(product._id, 1, selectedColorName))
+              }
+            >
+              <ArrowForwardIcon />
+            </IconButton>
             <Grid item>
               <Typography classes={{ root: classes.price }}>
                 {`${product?.price?.toLocaleString('fa-IR')} تومان`}
@@ -196,14 +204,6 @@ const AddToCartScreen = ({ match, history }) => {
             <Grid item>
               <div className={classes.offAmount}> ۱۰٪ تخفیف</div>
             </Grid>
-            <IconButton
-              className={classes.addToCardBtn}
-              onClick={() =>
-                dispatch(addToCart(product._id, 1, selectedColorName))
-              }
-            >
-              <ArrowBackIcon />
-            </IconButton>
           </Grid>
           <Slide direction="up" in={checked} mountOnEnter unmountOnExit>
             <Grid

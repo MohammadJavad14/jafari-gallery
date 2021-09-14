@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
@@ -16,7 +16,6 @@ import Button from '@material-ui/core/Button';
 import CloseIcon from '@material-ui/icons/Close';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { saveShippingAddress } from '../actions/cartActions';
-import { login } from '../actions/userActions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -61,12 +60,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ShippingScreen = ({ location, history }) => {
+const ShippingScreen = ({ history }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.userLogin);
-  const { userInfo } = useSelector((state) => state.userLogin);
-  const { error } = useSelector((state) => state.userLogin);
+  // const { userInfo } = useSelector((state) => state.userLogin);
+  // const { error } = useSelector((state) => state.userLogin);
   const { shippingAddress } = useSelector((state) => state.cart);
 
   //   const redirect = location.search ? location.search.split('=')[1] : '/';
@@ -94,7 +93,7 @@ const ShippingScreen = ({ location, history }) => {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       dispatch(saveShippingAddress(values));
-      history.push('/payment');
+      history.push('/checkout');
     },
   });
   return (

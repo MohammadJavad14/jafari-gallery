@@ -2,7 +2,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react';
-import { Link as RouteLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -28,7 +27,7 @@ import cash from '../styles/cash.png';
 import album from '../styles/album.png';
 import FooterMobile from '../components/UI/FooterMobile';
 import Loader from '../components/UI/Loader';
-import { loguot } from '../actions/userActions';
+import { logout } from '../actions/userActions';
 
 const HomeScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -53,9 +52,9 @@ const HomeScreen = ({ history }) => {
     setAnchor(true);
   };
 
-  const handleClose = () => {
-    setAnchor(null);
-  };
+  // const handleClose = () => {
+  //   setAnchor(null);
+  // };
 
   useEffect(() => {
     dispatch(listProduct());
@@ -120,7 +119,7 @@ const HomeScreen = ({ history }) => {
                       fullWidth
                       variant="outlined"
                       onClick={() => {
-                        dispatch(loguot());
+                        dispatch(logout());
                         setAnchor(false);
                       }}
                     >
