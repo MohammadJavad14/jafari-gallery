@@ -124,8 +124,6 @@ const payCallback = asyncHandler(async (req, res, next) => {
       payParams
     );
 
-    order.isPaid = true;
-
     if (response.data.data.code != 100) {
       if (order) {
         order.isPaid = true;
