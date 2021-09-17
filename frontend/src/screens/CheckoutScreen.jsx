@@ -151,10 +151,6 @@ const CheckoutScreen = () => {
   useEffect(() => {
     if (!payLoading && payURL) {
       window.location.href = payURL?.url;
-      dispatch({
-        type: CART_CLEAR_ITEMS,
-      });
-      localStorage.removeItem('cartItems');
     }
   }, [payLoading, payURL]);
 

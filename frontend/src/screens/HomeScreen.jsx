@@ -17,7 +17,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import { listProduct } from '../actions/productAcions';
+import { listProduct } from '../actions/productActions';
 import HomeScreenStyles from '../styles/HomeScreenStyles';
 import Product from '../components/Product';
 import PopularProduct from '../components/PopularProduct';

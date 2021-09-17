@@ -69,7 +69,7 @@ const updateOrderToPaid = asyncHandler(async (req, res, err) => {
     const payParams = {
       merchant_id: "6cded376-3063-11e9-a98e-005056a205be",
       amount: order.totalPrice,
-      callback_url: `http://localhost:3000/paymentResult/${order._id}`,
+      callback_url: `http://jafarii-gallery.herokuapp.com/paymentResult/${order._id}`,
       description: "خرید از گالری حعفری",
       metadata: [{ email: order.email }, { mobile: order.phoneNumber }],
     };
@@ -100,7 +100,7 @@ const updateOrderToPaid = asyncHandler(async (req, res, err) => {
   }
 });
 
-const payCallback = asyncHandler(async (req, res, next) => {
+const payResult = asyncHandler(async (req, res, next) => {
   try {
     // if (req.query.Status && req.query.Status !== 'OK') {
     //     return res.send('تراکنش ناموفق');
@@ -196,7 +196,7 @@ export {
   getOrderById,
   updateOrderToPaid,
   updateOrderToDelivered,
-  payCallback,
+  payResult,
   getMyOrders,
   getOrders,
 };

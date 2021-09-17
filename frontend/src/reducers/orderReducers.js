@@ -8,8 +8,14 @@ import {
   ORDER_DETAIL_FAIL,
   ORDER_DETAIL_REQUEST,
   ORDER_DETAIL_SUCCESS,
+  ORDER_MY_DETAIL_FAIL,
+  ORDER_MY_DETAIL_REQUEST,
+  ORDER_MY_DETAIL_SUCCESS,
   ORDER_PAY_FAIL,
   ORDER_PAY_REQUEST,
+  ORDER_PAY_RESULT_FAIL,
+  ORDER_PAY_RESULT_REQUEST,
+  ORDER_PAY_RESULT_SUCCESS,
   ORDER_PAY_SUCCESS,
 } from '../constants/orderConstants';
 
@@ -59,6 +65,28 @@ export const goToPaymentReducer = (state = {}, action) => {
   }
 };
 
+export const payResultReducer = (state = {}, action) => {
+  switch (action.type) {
+    case ORDER_PAY_RESULT_REQUEST:
+      return {
+        loading: true,
+      };
+    case ORDER_PAY_RESULT_SUCCESS:
+      return {
+        loading: false,
+        payResult: action.payload,
+      };
+    case ORDER_PAY_RESULT_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+
+    default:
+      return state;
+  }
+};
+
 export const getOrderByIdReducer = (state = {}, action) => {
   switch (action.type) {
     case ORDER_DETAIL_REQUEST:
@@ -71,6 +99,28 @@ export const getOrderByIdReducer = (state = {}, action) => {
         orderDetail: action.payload,
       };
     case ORDER_DETAIL_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+
+    default:
+      return state;
+  }
+};
+
+export const getMyOrdersReducer = (state = {}, action) => {
+  switch (action.type) {
+    case ORDER_MY_DETAIL_REQUEST:
+      return {
+        loading: true,
+      };
+    case ORDER_MY_DETAIL_SUCCESS:
+      return {
+        loading: false,
+        myOrders: action.payload,
+      };
+    case ORDER_MY_DETAIL_FAIL:
       return {
         loading: false,
         error: action.payload,

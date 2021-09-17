@@ -25,7 +25,7 @@ import Badge from '@material-ui/core/Badge';
 import Typography from '@material-ui/core/Typography';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import { Link } from 'react-router-dom';
-import { listProductDetails } from '../actions/productAcions';
+import { listProductDetails } from '../actions/productActions';
 import Rating from '../components/Rating';
 import Loader from '../components/UI/Loader';
 import AddToCartScreenStyles from '../styles/AddToCartScreenStyles';

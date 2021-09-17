@@ -12,7 +12,7 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Typography from '@material-ui/core/Typography';
 
 import { Link } from 'react-router-dom';
-import { listProduct, listProductDetails } from '../actions/productAcions';
+import { listProduct, listProductDetails } from '../actions/productActions';
 import Rating from '../components/Rating';
 import Review from '../components/Review';
 import Product from '../components/Product';

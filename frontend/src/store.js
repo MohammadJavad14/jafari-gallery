@@ -9,9 +9,11 @@ import {
 import { userLoginReducer } from './reducers/userReducers';
 import { cartReducer } from './reducers/cartReducers';
 import {
+  getMyOrdersReducer,
   getOrderByIdReducer,
   goToPaymentReducer,
   orderCreateReducer,
+  payResultReducer,
 } from './reducers/orderReducers';
 
 const reducer = combineReducers({
@@ -21,7 +23,9 @@ const reducer = combineReducers({
   cart: cartReducer,
   orderCreate: orderCreateReducer,
   goToPayment: goToPaymentReducer,
+  paymentResult: payResultReducer,
   orderDetail: getOrderByIdReducer,
+  orderMyDetail: getMyOrdersReducer,
 });
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')

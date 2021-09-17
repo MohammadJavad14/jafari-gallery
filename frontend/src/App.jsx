@@ -7,6 +7,7 @@ import AddToCartScreen from './screens/AddToCartScreen';
 import ShippingScreen from './screens/ShippingScreen';
 import CheckoutScreen from './screens/CheckoutScreen';
 import PaymentResult from './screens/PaymentResult';
+import MyOrdersScreen from './screens/MyOrdersScreen';
 
 const App = () => (
   <BrowserRouter>
@@ -17,6 +18,7 @@ const App = () => (
     <Route path="/shipping" component={ShippingScreen} exact />
     <Route path="/checkout" component={CheckoutScreen} exact />
     <Route path="/paymentResult/:id" component={PaymentResult} exact />
+    <Route path="/orders" component={MyOrdersScreen} exact />
   </BrowserRouter>
 );
 
