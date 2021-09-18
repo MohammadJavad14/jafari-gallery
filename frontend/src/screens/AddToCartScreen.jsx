@@ -38,11 +38,12 @@ const AddToCartScreen = ({ match, history }) => {
   const { product } = useSelector((state) => state.productDetails);
   const { cartItems } = useSelector((state) => state.cart);
 
-  const colorName = product?.color?.length
-    ? product?.color[0]?.colorName
-    : null;
+  // const colorName = product?.color?.length
+  //   ? product?.color[0]?.colorName
+  //   : null;
+
   const [selectedColor, setSelectedColor] = useState(null);
-  const [selectedColorName, setSelectedColorName] = useState(colorName);
+  const [selectedColorName, setSelectedColorName] = useState(null);
   const [checked, setChecked] = useState(false);
 
   const [drawer, setDrawer] = useState(false);

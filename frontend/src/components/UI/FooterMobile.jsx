@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
@@ -15,7 +17,7 @@ const useStyles = makeStyles({
     // maxWidth: 600,
     height: '4rem',
   },
-  footerContiner: {
+  footerContainer: {
     position: 'fixed',
     width: '100%',
     // maxWidth: 600,
@@ -33,16 +35,26 @@ const useStyles = makeStyles({
 });
 
 const FooterMobile = () => {
-  const classes = useStyles();
+  const dispatch = useDispatch();
+  const { activeTab } = useSelector((state) => state.tabs);
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
+    dispatch({
+      type: 'CHANGE_ACTIVE_TAB',
+      payload: newValue,
+    });
+
+    localStorage.setItem('activeTab', JSON.stringify(newValue));
+
     setValue(newValue);
   };
+
+  const classes = useStyles();
   return (
-    <Paper square className={classes.footerContiner}>
+    <Paper square className={classes.footerContainer}>
       <Tabs
-        value={value}
+        value={activeTab}
         onChange={handleChange}
         variant="fullWidth"
         indicatorColor="primary"
@@ -56,6 +68,8 @@ const FooterMobile = () => {
           aria-label="home"
           className={classes.root}
           classes={{ textColorPrimary: classes.labelIcon }}
+          component={Link}
+          to="/"
         />
         <Tab
           icon={<FavoriteBorderOutlinedIcon />}
@@ -74,6 +88,8 @@ const FooterMobile = () => {
           aria-label="orders"
           className={classes.root}
           classes={{ textColorPrimary: classes.labelIcon }}
+          component={Link}
+          to="/orders"
         />
         <Tab
           icon={<LocalMallOutlinedIcon />}

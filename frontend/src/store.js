@@ -15,6 +15,7 @@ import {
   orderCreateReducer,
   payResultReducer,
 } from './reducers/orderReducers';
+import { footerTabReducer } from './reducers/footerReducers';
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -26,6 +27,7 @@ const reducer = combineReducers({
   paymentResult: payResultReducer,
   orderDetail: getOrderByIdReducer,
   orderMyDetail: getMyOrdersReducer,
+  tabs: footerTabReducer,
 });
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')
@@ -40,19 +42,24 @@ const shippingAddressFromStorage = localStorage.getItem('shippingAddress')
   ? JSON.parse(localStorage.getItem('shippingAddress'))
   : {};
 
-const initalState = {
+const activeTabFromStorage = localStorage.getItem('activeTab')
+  ? JSON.parse(localStorage.getItem('activeTab'))
+  : 0;
+
+const initialState = {
   cart: {
     cartItems: cartItemsFromStorage,
     shippingAddress: shippingAddressFromStorage,
   },
   userLogin: { userInfo: userInfoFromStorage },
+  tabs: { activeTab: activeTabFromStorage },
 };
 
 const middleware = [thunk];
 
 const store = createStore(
   reducer,
-  initalState,
+  initialState,
   composeWithDevTools(applyMiddleware(...middleware))
 );
 
