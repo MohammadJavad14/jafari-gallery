@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-undef */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -13,6 +14,11 @@ import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/Input';
 import Slide from '@material-ui/core/Slide';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContet from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -31,6 +37,10 @@ import Loader from '../components/UI/Loader';
 import AddToCartScreenStyles from '../styles/AddToCartScreenStyles';
 import { addToCart, removeFromCart } from '../actions/cartActions';
 
+// eslint-disable-next-line prefer-arrow-callback
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 const AddToCartScreen = ({ match, history }) => {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.productDetails);
@@ -47,6 +57,17 @@ const AddToCartScreen = ({ match, history }) => {
   const [checked, setChecked] = useState(false);
 
   const [drawer, setDrawer] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    if (selectedColor !== -1) {
+      setOpen(true);
+    }
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   useEffect(() => {
     // eslint-disable-next-line no-undef
@@ -97,7 +118,7 @@ const AddToCartScreen = ({ match, history }) => {
 
   return (
     <>
-      {loading ? (
+      {loading || !product ? (
         <Loader />
       ) : error ? (
         <h3>{error.message}</h3>
@@ -176,6 +197,23 @@ const AddToCartScreen = ({ match, history }) => {
               </>
             )}
           </div>
+          <Dialog
+            open={open}
+            TransitionComponent={Transition}
+            keepMounted
+            onClose={handleClose}
+            aria-describedby="dialog"
+          >
+            <DialogTitle>انتخاب رنگ محصول</DialogTitle>
+            <DialogContet>
+              <DialogContentText>
+                لطفا رنگ مورد نظر خود را انتخاب کنید
+              </DialogContentText>
+            </DialogContet>
+            <DialogActions>
+              <Button onClick={handleClose}>باشه</Button>
+            </DialogActions>
+          </Dialog>
 
           <Grid
             container
@@ -186,9 +224,13 @@ const AddToCartScreen = ({ match, history }) => {
           >
             <IconButton
               className={classes.addToCardBtn}
-              onClick={() =>
-                dispatch(addToCart(product._id, 1, selectedColorName))
-              }
+              onClick={() => {
+                if (product.color.length !== 0 && selectedColorName === null) {
+                  handleClickOpen();
+                } else {
+                  dispatch(addToCart(product._id, 1, selectedColorName));
+                }
+              }}
             >
               <ArrowForwardIcon />
             </IconButton>

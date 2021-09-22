@@ -235,6 +235,16 @@ const MyOrdersScreen = ({ history }) => {
                                   )} تومان`}
                                 </Typography>
                               </Grid>
+                              <Grid item>
+                                <Typography
+                                  style={{
+                                    fontSize: '0.875rem',
+                                    marginRight: '0.7rem',
+                                  }}
+                                >
+                                  {item.color}
+                                </Typography>
+                              </Grid>
                             </Grid>
                           </ListItem>
                         ))}
