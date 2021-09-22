@@ -28,7 +28,7 @@ const ReviewsStyles = makeStyles((theme) => ({
         fontWeight: 'bold',
     },
     reviewNameContainer: {
-        marginLeft: '0.5rem',
+        marginRight: '0.5rem',
     },
     reviewName: {
         fontSize: '1rem',
