@@ -166,6 +166,9 @@ const HomeScreenStyles = makeStyles(() => ({
     categoriesName: {
         color: '#fff',
     },
+    userName: {
+        justifyContent: 'center',
+    },
 }));
 
 export default HomeScreenStyles;

@@ -34,7 +34,7 @@ const HomeScreen = ({ history }) => {
   const { loading } = useSelector((state) => state.productList);
   const { error } = useSelector((state) => state.productList);
   const { products } = useSelector((state) => state.productList);
-  const userInfo = localStorage.getItem('userInfo');
+  const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
   const [anchor, setAnchor] = useState(null);
 
@@ -108,6 +108,11 @@ const HomeScreen = ({ history }) => {
             >
               <div style={{ width: '12rem', paddingTop: '1rem' }}>
                 <List>
+                  <ListItem classes={{ root: classes.userName }}>
+                    <Typography style={{ fontWeight: 700 }}>
+                      {userInfo.name}
+                    </Typography>
+                  </ListItem>
                   <ListItem>
                     <ListItemIcon>
                       <AccountBoxIcon />
