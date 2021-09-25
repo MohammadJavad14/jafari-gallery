@@ -38,20 +38,22 @@ const useStyles = makeStyles({
 const FooterMobile = () => {
   const dispatch = useDispatch();
   const { activeTab } = useSelector((state) => state.tabs);
+  const [value, setValue] = useState(activeTab);
 
-  const handleChange = (newValue) => {
+  const handleChange = (event, newValue) => {
     dispatch({
       type: 'CHANGE_ACTIVE_TAB',
       payload: newValue,
     });
     localStorage.setItem('activeTab', JSON.stringify(newValue));
+    setValue(newValue);
   };
 
   const classes = useStyles();
   return (
     <Paper square className={classes.footerContainer}>
       <Tabs
-        value={activeTab}
+        value={value}
         onChange={handleChange}
         variant="fullWidth"
         indicatorColor="primary"
