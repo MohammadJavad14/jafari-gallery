@@ -58,6 +58,11 @@ const HomeScreen = ({ history }) => {
 
   useEffect(() => {
     dispatch(listProduct());
+    dispatch({
+      type: 'CHANGE_ACTIVE_TAB',
+      payload: 0,
+    });
+    localStorage.setItem('activeTab', JSON.stringify(0));
   }, [dispatch]);
 
   const classes = HomeScreenStyles();
@@ -110,7 +115,7 @@ const HomeScreen = ({ history }) => {
                 <List>
                   <ListItem classes={{ root: classes.userName }}>
                     <Typography style={{ fontWeight: 700 }}>
-                      {userInfo.name}
+                      {userInfo?.name}
                     </Typography>
                   </ListItem>
                   <ListItem>

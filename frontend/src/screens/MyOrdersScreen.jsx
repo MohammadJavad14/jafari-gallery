@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1),
   },
   header: {
-    height: '8rem',
+    height: '6rem',
     backgroundColor: '#FFE202',
     padding: theme.spacing(3),
   },
@@ -86,6 +86,11 @@ const MyOrdersScreen = ({ history }) => {
 
   useEffect(() => {
     dispatch(getMyOrders());
+    dispatch({
+      type: 'CHANGE_ACTIVE_TAB',
+      payload: 3,
+    });
+    localStorage.setItem('activeTab', JSON.stringify(3));
   }, [dispatch]);
 
   const handleClick = (event) => {
@@ -110,7 +115,7 @@ const MyOrdersScreen = ({ history }) => {
           container
           alignItems="center"
           justifyContent="space-between"
-          style={{ marginTop: '2.5rem' }}
+          style={{ marginTop: '1.5rem' }}
         >
           <Grid item>
             <Typography variant="h6">سفارش های من</Typography>

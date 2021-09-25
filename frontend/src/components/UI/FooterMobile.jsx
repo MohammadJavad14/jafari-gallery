@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -37,17 +38,13 @@ const useStyles = makeStyles({
 const FooterMobile = () => {
   const dispatch = useDispatch();
   const { activeTab } = useSelector((state) => state.tabs);
-  const [value, setValue] = useState(0);
 
-  const handleChange = (event, newValue) => {
+  const handleChange = (newValue) => {
     dispatch({
       type: 'CHANGE_ACTIVE_TAB',
       payload: newValue,
     });
-
     localStorage.setItem('activeTab', JSON.stringify(newValue));
-
-    setValue(newValue);
   };
 
   const classes = useStyles();
